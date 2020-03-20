@@ -1,6 +1,6 @@
 package problems.current;
 
-import main.solvers.TimedSolver;
+import solvers.TimedSolver;
 
 public class Problem_000 extends TimedSolver {
 
@@ -8,6 +8,10 @@ public class Problem_000 extends TimedSolver {
 
     public Problem_000 (){
         super();
+    }
+
+    public static void main(String[] args) {
+        new Problem_000();
     }
 
     @Override

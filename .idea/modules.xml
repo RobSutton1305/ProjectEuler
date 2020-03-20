@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../Local/math-problems/math-problems.iml" filepath="$PROJECT_DIR$/../../Local/math-problems/math-problems.iml" />
       <module fileurl="file://$PROJECT_DIR$/project-euler.iml" filepath="$PROJECT_DIR$/project-euler.iml" />
     </modules>
   </component>
