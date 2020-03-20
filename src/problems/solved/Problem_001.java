@@ -1,14 +1,8 @@
-package problems;
-/**
- * Created by Rob Sutton on 09-Mar-2020.
- * https://projecteuler.net/problem=1
- *
- * 	 Answer : 233168
- * 	 Time Taken : 1.89092E-4 seconds
- *
-*/
+package problems.solved;
 
-public class Problem_001 extends Problem {
+import main.solvers.TimedSolver;
+
+public class Problem_001 extends TimedSolver {
 
     Integer LIMIT;
 
