@@ -1,10 +1,12 @@
-import problems.current.Problem_002;
+import problems.solved.*;
+import problems.current.*;
 
 public class ProjectEuler {
 
     public static void main(String[] args) {
 
-        new Problem_002();
+        // Solve chosen problem
+        new Problem_001();
 
     }
 
