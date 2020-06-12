@@ -1,4 +1,4 @@
-package problems.current;
+package problems.solved;
 
 import solvers.TimedSolver;
 
@@ -16,12 +16,23 @@ public class Problem_002 extends TimedSolver {
 
     @Override
     public void init() {
-        this.LIMIT = 0;
+        this.LIMIT = 4000000;
     }
 
     @Override
     public String solve() {
-        int count = 0;
+        int count = 0; // sum of even Fibonacci numbers <= LIMIT
+        int a = 1;
+        int b = 1;
+        int c = a + b;
+
+        while(c <= this.LIMIT){
+            if (c%2==0){ count += c; }
+            a = b;
+            b = c;
+            c = a + b;
+        }
+
         return Integer.toString(count);
     }
 }
