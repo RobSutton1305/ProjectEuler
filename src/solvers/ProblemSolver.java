@@ -1,16 +1,25 @@
 package solvers;
 
-public abstract class TimedSolver implements SolverInterface {
+public abstract class ProblemSolver implements ProblemSolverInterface {
 
-    private final long TIME_START, TIME_STOP;
-    private final String ANSWER;
+    protected String ANSWER;
+    private long TIME_START, TIME_STOP;
 
-    public TimedSolver() {
+    protected ProblemSolver() {
         this.init();
         this.TIME_START = System.nanoTime();
         this.ANSWER = this.solve();
         this.TIME_STOP = System.nanoTime();
         this.print();
+    }
+
+    @Override
+    public void init() {
+    }
+
+    @Override
+    public String solve() {
+        return "Override this method.";
     }
 
     @Override

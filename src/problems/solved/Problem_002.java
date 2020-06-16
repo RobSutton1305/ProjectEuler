@@ -1,17 +1,13 @@
 package problems.solved;
 
-import solvers.TimedSolver;
+import solvers.ProblemSolver;
 
-public class Problem_002 extends TimedSolver {
+public class Problem_002 extends ProblemSolver {
 
     Integer LIMIT;
 
     public Problem_002 (){
         super();
-    }
-
-    public static void main(String[] args) {
-        new Problem_002();
     }
 
     @Override

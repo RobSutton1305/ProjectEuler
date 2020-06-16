@@ -1,6 +1,6 @@
 package solvers;
 
-public interface SolverInterface {
+public interface ProblemSolverInterface {
         void init();
         String solve();
         void print();
