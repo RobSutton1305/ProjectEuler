@@ -4,8 +4,6 @@ import problems.ProblemSolver;
 
 public class Problem_001 extends ProblemSolver {
 
-    private final int LIMIT = 1000;
-
     public Problem_001 (){
         super("233168");
     }
@@ -13,7 +11,8 @@ public class Problem_001 extends ProblemSolver {
     @Override
     protected String solve() {
         int count = 0;
-        for (int i = 0; i < this.LIMIT; i++){
+        int LIMIT = 1000;
+        for (int i = 0; i < LIMIT; i++){
             if ((i%3==0) || (i%5==0)){
                 count += i;
             }
@@ -26,13 +25,4 @@ public class Problem_001 extends ProblemSolver {
         assert Problem.checkResult();
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
 }

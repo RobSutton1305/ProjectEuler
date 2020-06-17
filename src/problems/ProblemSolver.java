@@ -1,11 +1,11 @@
 package problems;
 
 import groovy.util.GroovyTestCase;
-import org.junit.Test;
 
 public abstract class ProblemSolver extends GroovyTestCase {
 
-    protected String ANSWER, EXPECTED_ANSWER;
+    protected final String ANSWER;
+    protected final String EXPECTED_ANSWER;
     private final long TIME_START, TIME_STOP;
 
     protected ProblemSolver(String EXPECTED_ANSWER) {
