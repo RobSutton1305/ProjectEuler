@@ -1,6 +1,6 @@
 package problems.current;
 
-import solvers.ProblemSolver;
+import problems.ProblemSolver;
 
 public class Problem_045 extends ProblemSolver {
 

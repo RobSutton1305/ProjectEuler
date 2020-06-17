@@ -1,11 +1,15 @@
-package solvers;
+package problems;
 
-public abstract class ProblemSolver implements ProblemSolverInterface {
+import groovy.util.GroovyTestCase;
+import org.junit.Test;
 
-    protected String ANSWER;
-    private long TIME_START, TIME_STOP;
+public abstract class ProblemSolver extends GroovyTestCase {
 
-    protected ProblemSolver() {
+    protected String ANSWER, EXPECTED_ANSWER;
+    private final long TIME_START, TIME_STOP;
+
+    protected ProblemSolver(String EXPECTED_ANSWER) {
+        this.EXPECTED_ANSWER = EXPECTED_ANSWER;
         this.init();
         this.TIME_START = System.nanoTime();
         this.ANSWER = this.solve();
@@ -13,17 +17,14 @@ public abstract class ProblemSolver implements ProblemSolverInterface {
         this.print();
     }
 
-    @Override
-    public void init() {
+    protected void init() {
     }
 
-    @Override
-    public String solve() {
-        return "Override this method.";
+    protected String solve() {
+        return "";
     }
 
-    @Override
-    public void print() {
+    protected void print() {
         System.out.println("\n\t Answer : " + this.ANSWER);
         final long TIME_NANO = this.TIME_STOP - this.TIME_START;
         if (TIME_NANO < 60000000000L) {
@@ -32,6 +33,10 @@ public abstract class ProblemSolver implements ProblemSolverInterface {
         } else {
             System.out.println("\t Time Taken : " + (TIME_NANO / 1000000000) + "s\n");
         }
+    }
+
+    public Boolean checkResult(){
+        return this.ANSWER.equals(this.EXPECTED_ANSWER);
     }
 
 }

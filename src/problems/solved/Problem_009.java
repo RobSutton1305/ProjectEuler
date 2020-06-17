@@ -1,15 +1,11 @@
 package problems.solved;
 
-import solvers.ProblemSolver;
+import problems.ProblemSolver;
 
 public class Problem_009 extends ProblemSolver {
 
     public Problem_009() {
-        super();
-    }
-
-    @Override
-    public void init() {
+        super("31875000");
     }
 
     @Override
@@ -27,4 +23,18 @@ public class Problem_009 extends ProblemSolver {
         return "Error";
     }
 
+    public void testProblem_009() {
+        ProblemSolver Problem = new Problem_009();
+        assert Problem.checkResult();
+    }
+
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        super.tearDown();
+    }
 }

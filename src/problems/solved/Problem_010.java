@@ -1,21 +1,19 @@
 package problems.solved;
 
-import solvers.ProblemSolver;
-
+import problems.ProblemSolver;
 import java.util.BitSet;
 
 public class Problem_010 extends ProblemSolver {
 
-    private Integer N;
-    BitSet Sieve;
+    private final int N = 2000000;
+    private BitSet Sieve;
 
     public Problem_010() {
-        super();
+        super("142913828922");
     }
 
     @Override
     public void init() {
-        this.N = 2000000;
         this.Sieve = new BitSet(this.N);
     }
 
@@ -40,4 +38,18 @@ public class Problem_010 extends ProblemSolver {
         return Long.toString(sum);
     }
 
+    public void testProblem_010() {
+        ProblemSolver Problem = new Problem_010();
+        assert Problem.checkResult();
+    }
+
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        super.tearDown();
+    }
 }
