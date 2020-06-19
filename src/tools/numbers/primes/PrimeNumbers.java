@@ -1,11 +1,11 @@
-package tools;
+package tools.numbers.primes;
 /*
 
  */
 
 import java.util.BitSet;
 
-public class Primes{
+public class PrimeNumbers {
     /**
      * Created by Rob Sutton on 12-Jun-2016.
      *
@@ -23,7 +23,7 @@ public class Primes{
     private int primeCount;
 
     /* Compiles array of primes UP TO n */
-    public Primes(int n){
+    public PrimeNumbers(int n){
         int[] temp;
         temp = new int[n];
         temp[0] = 2; temp[1] = 3;

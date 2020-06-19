@@ -1,11 +1,11 @@
 package problems.solved;
 
 import problems.ProblemSolver;
-import tools.Primes;
+import tools.numbers.primes.PrimeNumbers;
 
 public class Problem_007 extends ProblemSolver {
 
-    private Primes Primes;
+    private PrimeNumbers Primes;
 
     public Problem_007() {
         super("104743");
@@ -13,7 +13,7 @@ public class Problem_007 extends ProblemSolver {
 
     @Override
     public void init() {
-        this.Primes = new Primes(123456); // Big enough that prime array is over 10001 in length
+        this.Primes = new PrimeNumbers(123456); // Big enough that prime array is over 10001 in length
     }
 
     @Override

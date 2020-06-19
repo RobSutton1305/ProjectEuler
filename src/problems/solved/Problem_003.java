@@ -1,6 +1,7 @@
 package problems.solved;
 
 import problems.ProblemSolver;
+import tools.numbers.primes.PrimeFactors;
 
 public class Problem_003 extends ProblemSolver {
 
@@ -11,7 +12,7 @@ public class Problem_003 extends ProblemSolver {
     @Override
     public String solve() {
         long l = 600851475143L;
-        return tools.PrimeFactors.findLargestPrimeFactor(l).toString();
+        return PrimeFactors.findLargestPrimeFactor(l).toString();
     }
 
     public void testProblem_003() {

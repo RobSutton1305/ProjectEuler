@@ -1,4 +1,4 @@
-package tools;
+package tools.numbers.primes;
 
 import java.math.BigInteger;
 
