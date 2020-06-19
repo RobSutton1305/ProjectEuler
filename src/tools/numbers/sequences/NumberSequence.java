@@ -50,7 +50,7 @@ public abstract class NumberSequence extends LinkedList<NumberType> {
 
 
     // Generate Next Values
-    protected void generateNext(){
+    public void generateNext(){
         if(this.CLASS == Integer.class) {
             this.add(generateNext_Integer());
         }
@@ -73,7 +73,7 @@ public abstract class NumberSequence extends LinkedList<NumberType> {
 
 
     // Iteration Methods
-    public NumberType getNthEntry(int N){
+    public NumberType iterateUpToNthIndex(int N){
         // Return if we already know it.
         if (N <= this.size()){ return this.get(N); }
         // Iterate until we have gone far enough.

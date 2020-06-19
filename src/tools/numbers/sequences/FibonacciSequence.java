@@ -22,7 +22,6 @@ public class FibonacciSequence extends NumberSequence {
         super(Initial_Number);
     }
 
-
     // Generate Initial Values (as many as you like)
     protected FibonacciSequence generateInitialValues_Integer(){
         FibonacciSequence Initial_Values = new FibonacciSequence(new NumberType(1));

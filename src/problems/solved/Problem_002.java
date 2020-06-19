@@ -1,6 +1,10 @@
 package problems.solved;
 
 import problems.ProblemSolver;
+import tools.numbers.sequences.FibonacciSequence;
+import tools.numbers.type.NumberType;
+
+import java.math.BigInteger;
 
 public class Problem_002 extends ProblemSolver {
 
@@ -10,18 +14,15 @@ public class Problem_002 extends ProblemSolver {
 
     @Override
     public String solve() {
-        int count = 0; // sum of even Fibonacci numbers <= LIMIT
-        int a = 1;
-        int b = 1;
-        int c = a + b;
-        int LIMIT = 4000000;
-        while(c <= LIMIT){
-            if ( c % 2 == 0 ){ count += c; }
-            a = b;
-            b = c;
-            c = a + b;
+        Integer sumEvenFibonacci = 0;
+        // Initial Numbers
+        FibonacciSequence FibonacciSequence = new FibonacciSequence(Integer.class);
+        FibonacciSequence.iterateUpToLimit(new BigInteger("4000000"));
+        int INDEX = 0; // Every third Fibonacci number is even.
+        for (NumberType N : FibonacciSequence){
+            if (++INDEX % 3 == 0) sumEvenFibonacci += (Integer)N.VALUE;
         }
-        return Integer.toString(count);
+        return Long.toString(sumEvenFibonacci);
     }
 
     public void testProblem_002() {

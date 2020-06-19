@@ -19,15 +19,15 @@ class TriangleSequenceTest extends GroovyTestCase {
     // Testing Nth Value
     @Test
     void testTriangleSequence_getNthValue_withInteger() {
-        assert new TriangleSequence(Integer.class).getNthEntry(this.INDEX).VALUE.toString() == this.VALUE
+        assert new TriangleSequence(Integer.class).iterateUpToNthIndex(this.INDEX).VALUE.toString() == this.VALUE
     }
     @Test
     void testTriangleSequence_getNthValue_withLong() {
-        assert new TriangleSequence(Long.class).getNthEntry(this.INDEX).VALUE.toString() == this.VALUE
+        assert new TriangleSequence(Long.class).iterateUpToNthIndex(this.INDEX).VALUE.toString() == this.VALUE
     }
     @Test
     void testTriangleSequence_getNthValue_withBigInteger() {
-        assert new TriangleSequence(BigInteger.class).getNthEntry(this.INDEX).VALUE.toString() == this.VALUE
+        assert new TriangleSequence(BigInteger.class).iterateUpToNthIndex(this.INDEX).VALUE.toString() == this.VALUE
     }
 
 

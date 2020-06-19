@@ -1,7 +1,7 @@
 package problems.solved;
 
 import problems.ProblemSolver;
-import tools.numbers.primes.PrimeFactors;
+import tools.numbers.factors.PrimeFactors;
 
 public class Problem_003 extends ProblemSolver {
 

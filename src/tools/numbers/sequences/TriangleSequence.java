@@ -12,7 +12,6 @@ public class TriangleSequence extends NumberSequence {
     /**
      Max for Integer is 65535 --> 2147450880
      */
-
     public TriangleSequence(Class CLASS) {
         super(CLASS);
     }

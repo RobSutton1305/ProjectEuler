@@ -1,7 +1,7 @@
-package tools.numbers.primes
+package tools.numbers.factors
 
 import org.junit.Test
-import static tools.numbers.primes.PrimeFactors.findLargestPrimeFactor
+import static tools.numbers.factors.PrimeFactors.findLargestPrimeFactor
 
 class PrimeFactorsTest extends GroovyTestCase {
 

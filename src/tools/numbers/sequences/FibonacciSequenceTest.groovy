@@ -2,8 +2,6 @@ package tools.numbers.sequences
 
 import org.junit.Test
 
-import static tools.numbers.primes.PrimeFactors.findLargestPrimeFactor
-
 class FibonacciSequenceTest extends GroovyTestCase {
 
     private Integer INDEX
@@ -21,15 +19,15 @@ class FibonacciSequenceTest extends GroovyTestCase {
     // Testing Nth Value
     @Test
     void testFibonacciSequence_getNthValue_withInteger() {
-        assert new FibonacciSequence(Integer.class).getNthEntry(this.INDEX).VALUE.toString() == this.VALUE
+        assert new FibonacciSequence(Integer.class).iterateUpToNthIndex(this.INDEX).VALUE.toString() == this.VALUE
     }
     @Test
     void testFibonacciSequence_getNthValue_withLong() {
-        assert new FibonacciSequence(Long.class).getNthEntry(this.INDEX).VALUE.toString() == this.VALUE
+        assert new FibonacciSequence(Long.class).iterateUpToNthIndex(this.INDEX).VALUE.toString() == this.VALUE
     }
     @Test
     void testFibonacciSequence_getNthValue_withBigInteger() {
-        assert new FibonacciSequence(BigInteger.class).getNthEntry(this.INDEX).VALUE.toString() == this.VALUE
+        assert new FibonacciSequence(BigInteger.class).iterateUpToNthIndex(this.INDEX).VALUE.toString() == this.VALUE
     }
 
     // Testing up to LIMIT
