@@ -1,63 +1,59 @@
 package tools.numbers.sequences;
 
-import tools.numbers.type.NumberType;
-
+import tools.numbers.types.NumberType;
 import java.math.BigInteger;
 import java.util.LinkedList;
 
 public abstract class NumberSequence extends LinkedList<NumberType> {
 
-    public final Class CLASS;
+    public final String NUMBER_CLASS;
 
-    public NumberSequence(Class CLASS) {
+    /* Public Constructor*/
+    public NumberSequence(String NUMBER_CLASS){
+        this(NUMBER_CLASS, true);
+    }
+
+    /* Private Constructor for Initialising Values */
+    protected NumberSequence(String NUMBER_CLASS, Boolean GET_INITIAL_VALUES){
         super();
-        this.CLASS = CLASS;
-        setInitialValues(generateInitialValues());
+        this.NUMBER_CLASS = NUMBER_CLASS;
+        if (GET_INITIAL_VALUES){
+            this.addAll(setInitialValues());
+        }
     }
 
-    // This is used for initial values only
-    protected NumberSequence(NumberType NumberType){
-        super();
-        this.CLASS = NumberType.CLASS;
-        this.addFirst(NumberType);
-    }
-
-    // Initial Values
-    protected void setInitialValues(NumberSequence InitialValues) {
-        this.addAll(InitialValues);
-    }
-    protected NumberSequence generateInitialValues(){
-        if(this.CLASS == Integer.class) {
-            return generateInitialValues_Integer();
+    /* Creates the initial values. */
+    protected NumberSequence setInitialValues(){
+        if(this.NUMBER_CLASS.equals("Integer")) {
+            return setInitialValues_Integer();
         }
-        if(this.CLASS == Long.class) {
-            return generateInitialValues_Long();
+        if(this.NUMBER_CLASS.equals("Long")) {
+            return setInitialValues_Long();
         }
-        if(this.CLASS == BigInteger.class) {
-             return generateInitialValues_BigInteger();
+        if(this.NUMBER_CLASS.equals("BigInteger")) {
+             return setInitialValues_BigInteger();
         }
         return null;
     }
-    protected NumberSequence generateInitialValues_Integer(){
+    protected NumberSequence setInitialValues_Integer(){
         return null;
     }
-    protected NumberSequence generateInitialValues_Long(){
+    protected NumberSequence setInitialValues_Long(){
         return null;
     }
-    protected NumberSequence generateInitialValues_BigInteger(){
+    protected NumberSequence setInitialValues_BigInteger(){
         return null;
     }
 
-
-    // Generate Next Values
+    /* Used to generate the next value. */
     public void generateNext(){
-        if(this.CLASS == Integer.class) {
+        if(this.NUMBER_CLASS.equals("Integer")) {
             this.add(generateNext_Integer());
         }
-        if(this.CLASS == Long.class) {
+        if(this.NUMBER_CLASS.equals("Long")) {
             this.add(generateNext_Long());
         }
-        if(this.CLASS == BigInteger.class) {
+        if(this.NUMBER_CLASS.equals("BigInteger")) {
             this.add(generateNext_BigInteger());
         }
     }
@@ -71,28 +67,24 @@ public abstract class NumberSequence extends LinkedList<NumberType> {
         return null;
     }
 
-
-    // Iteration Methods
-    public NumberType iterateUpToNthIndex(int N){
-        // Return if we already know it.
-        if (N <= this.size()){ return this.get(N); }
-        // Iterate until we have gone far enough.
+    /* This finds the first N values then stops. */
+    public void iterateUpToNthIndex(int N){
         while(this.size() < N){
             generateNext();
         }
-        return this.get(N-1);
-    }
-    public NumberType iterateUpToLimit(BigInteger LIMIT){
-        // Iterate until we have gone far enough.
-        while(new BigInteger(this.getLast().VALUE.toString()).compareTo(LIMIT) < 0){
-            generateNext();
-        }
-        return this.get(this.size()-2);
     }
 
-    // Other Methods
-    public void print(){
-        this.forEach( (element) -> System.out.println( element.VALUE ));
+    /* This finds a value greater than LIMIT then stops. */
+    public void iterateUpToLimit(String LIMIT){
+        // Iterate until we have gone far enough.
+        while(new BigInteger(this.getLast().toString()).compareTo(new BigInteger(LIMIT)) < 0){
+            generateNext();
+        }
+    }
+
+    /* Calls NumberType.print() for each value in the sequence */
+    public void printSequence(){
+        this.forEach(NumberType::print);
     }
 
 }

@@ -1,19 +1,19 @@
 package tools.numbers.primes;
-/*
-
- */
 
 import java.util.BitSet;
 
-public class PrimeNumbers {
+public class Primes {
     /**
+     * TODO - this rest of this class --> PrimeSequence
+     *
      * Created by Rob Sutton on 12-Jun-2016.
      *
      * Primes object can return an array of primes up to limit.
      *
      * Can use these to check if n up to limit*limit is prime
      * BitSet is suited to smaller numbers as sieve would need size (limit*limit)
-     *      * getPrimes() returns int[]
+     *
+     * getPrimes() returns int[]
      * isPrime(int n) checks if n is a prime
      * nextPrime(n) returns next prime after n
      *
@@ -23,7 +23,7 @@ public class PrimeNumbers {
     private int primeCount;
 
     /* Compiles array of primes UP TO n */
-    public PrimeNumbers(int n){
+    public Primes(int n){
         int[] temp;
         temp = new int[n];
         temp[0] = 2; temp[1] = 3;
@@ -61,25 +61,24 @@ public class PrimeNumbers {
 
     // Check if n is prime
     public boolean isPrime(int n) {
-        boolean result = false;
         for (int i = 0; primeArray[i] * primeArray[i] <= n; i++) {
-            if (n % 6 != 1 && n % 6 != 5) {
-                result = true;
-                break;
+            if (n % 6 != 1 && n % 6 != 5) { // this looks like it can be taken outside the for loop
+                return false;
             }
             if (n % primeArray[i] == 0) {
-                result = true;
-                break;
+                return false;
             }
         }
-        return result;
+        return true;
     }
 
     public int size(){ return primeCount -1; }
 
     public int[] getPrimeArray(){ return primeArray; }
 
-    public static BitSet getPrimesBelow(int n){
+
+    // I implemented this in PrimeSequence
+    public static BitSet getPrimesBelow(int n) {
         BitSet sieve = new BitSet(n);
         // default at true = prime
         for (int p = 0; p < n; p++) sieve.flip(p);

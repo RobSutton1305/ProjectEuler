@@ -3,9 +3,7 @@ package tools.numbers.sequences;
 import org.codehaus.groovy.runtime.typehandling.BigIntegerMath;
 import org.codehaus.groovy.runtime.typehandling.IntegerMath;
 import org.codehaus.groovy.runtime.typehandling.LongMath;
-import tools.numbers.type.FibonacciNumberType;
-import tools.numbers.type.NumberType;
-
+import tools.numbers.types.FibonacciNumberType;
 import java.math.BigInteger;
 
 public class FibonacciSequence extends NumberSequence {
@@ -14,28 +12,33 @@ public class FibonacciSequence extends NumberSequence {
         Max for Integer is 46 --> 1836311903 (45) if LIMIT method is used
         Max for Long is 92    --> 7540113804746346429 (91)
      */
-    public FibonacciSequence(Class CLASS) {
-        super(CLASS);
+
+    /* Public Constructor */
+    public FibonacciSequence(String NUMBER_CLASS) {
+        super(NUMBER_CLASS);
     }
-    // Used only for Initial Values
-    private FibonacciSequence(NumberType Initial_Number) {
-        super(Initial_Number);
+    /* Private Constructor - Used to return Initial Values */
+    private FibonacciSequence(String NUMBER_CLASS, @SuppressWarnings("SameParameterValue") Boolean GET_INITIAL_VALUES) {
+        super(NUMBER_CLASS, GET_INITIAL_VALUES);
     }
 
-    // Generate Initial Values (as many as you like)
-    protected FibonacciSequence generateInitialValues_Integer(){
-        FibonacciSequence Initial_Values = new FibonacciSequence(new NumberType(1));
-        Initial_Values.add(new NumberType(1));
+    /* Define Initial Values Here */
+    protected FibonacciSequence setInitialValues_Integer(){
+        FibonacciSequence Initial_Values = new FibonacciSequence("Integer", false);
+        Initial_Values.add(new FibonacciNumberType(1));
+        Initial_Values.add(new FibonacciNumberType(1));
         return Initial_Values;
     }
-    protected FibonacciSequence generateInitialValues_Long(){
-        FibonacciSequence Initial_Values = new FibonacciSequence(new NumberType(1L));
-        Initial_Values.add(new NumberType(1L));
+    protected FibonacciSequence setInitialValues_Long(){
+        FibonacciSequence Initial_Values = new FibonacciSequence("Long", false);
+        Initial_Values.add(new FibonacciNumberType(1L));
+        Initial_Values.add(new FibonacciNumberType(1L));
         return Initial_Values;
     }
-    protected FibonacciSequence generateInitialValues_BigInteger(){
-        FibonacciSequence Initial_Values = new FibonacciSequence(new NumberType(BigInteger.ONE));
-        Initial_Values.add(new NumberType(BigInteger.ONE));
+    protected FibonacciSequence setInitialValues_BigInteger(){
+        FibonacciSequence Initial_Values = new FibonacciSequence("BigInteger", false);
+        Initial_Values.add(new FibonacciNumberType(BigInteger.ONE));
+        Initial_Values.add(new FibonacciNumberType(BigInteger.ONE));
         return Initial_Values;
     }
 
@@ -49,6 +52,5 @@ public class FibonacciSequence extends NumberSequence {
     protected FibonacciNumberType generateNext_BigInteger(){
         return new FibonacciNumberType((BigInteger) BigIntegerMath.add(this.get(this.size()-1).VALUE,this.get(this.size()-2).VALUE) );
     }
-
 
 }

@@ -1,9 +1,7 @@
 package tools.numbers.divisors
 
 import org.junit.Test
-
 import static tools.numbers.divisors.Divisors.countDivisors
-import static tools.numbers.factors.PrimeFactors.findLargestPrimeFactor
 
 class DivisorsTest extends GroovyTestCase {
 
@@ -26,6 +24,7 @@ class DivisorsTest extends GroovyTestCase {
         super.tearDown()
     }
 
+    /* Test the countDivisors Method */
     @Test
     void testCountDivisors_withInteger() {
         assert countDivisors(N).toString() == EXPECTED_ANSWER

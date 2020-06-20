@@ -10,17 +10,20 @@ public class Problem_005 extends ProblemSolver {
 
     @Override
     public String solve() {
-        int i = 20;
+        int i = 0;
         while (true){
-            i += 20;
-            boolean flag = true;
-            for (int j = 1; j < 21; j++){
-                if (i % j != 0) {
-                    flag = false;
-                    break;
-                }
-            }
-            if (flag){ return Integer.toString(i); }
+            i += 9699690; /* 2*3*5*7*11*13*17*19, answer must be a multiple of this. */
+            if (i % 4 != 0) { continue; }
+            if (i % 6 != 0) { continue; }
+            if (i % 8 != 0) { continue; }
+            if (i % 9 != 0) { continue; }
+            if (i % 10 != 0) { continue; }
+            if (i % 14 != 0) { continue; }
+            if (i % 15 != 0) { continue; }
+            if (i % 16 != 0) { continue; }
+            if (i % 18 != 0) { continue; }
+            if (i % 20 != 0) { continue; }
+            return Integer.toString(i);
         }
     }
 

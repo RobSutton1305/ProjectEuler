@@ -3,37 +3,42 @@ package tools.numbers.sequences;
 import org.codehaus.groovy.runtime.typehandling.BigIntegerMath;
 import org.codehaus.groovy.runtime.typehandling.IntegerMath;
 import org.codehaus.groovy.runtime.typehandling.LongMath;
-import tools.numbers.type.NumberType;
-import tools.numbers.type.TriangleNumberType;
+import tools.numbers.types.TriangleNumberType;
 import java.math.BigInteger;
 
 public class TriangleSequence extends NumberSequence {
 
     /**
-     Max for Integer is 65535 --> 2147450880
+        Max for Integer is 65535 --> 2147450880
+        Max for Long unknown
      */
-    public TriangleSequence(Class CLASS) {
-        super(CLASS);
+
+    /* Public Constructor */
+    public TriangleSequence(String NUMBER_CLASS) {
+        super(NUMBER_CLASS);
     }
-    // Used only for Initial Values
-    private TriangleSequence(NumberType Initial_Number) {
-        super(Initial_Number);
+    /* Private Constructor - Used to return Initial Values */
+    private TriangleSequence(String NUMBER_CLASS, @SuppressWarnings("SameParameterValue") Boolean GET_INITIAL_VALUES) {
+        super(NUMBER_CLASS, GET_INITIAL_VALUES);
     }
 
-    // Generate Initial Values (as many as you like)
-    protected TriangleSequence generateInitialValues_Integer(){
-        TriangleSequence Initial_Values = new TriangleSequence(new NumberType(1));
-        Initial_Values.add(new NumberType(3));
+    /* Define Initial Values Here */
+    protected TriangleSequence setInitialValues_Integer(){
+        TriangleSequence Initial_Values = new TriangleSequence("Integer", false);
+        Initial_Values.add(new TriangleNumberType(1));
+        Initial_Values.add(new TriangleNumberType(3));
         return Initial_Values;
     }
-    protected TriangleSequence generateInitialValues_Long(){
-        TriangleSequence Initial_Values = new TriangleSequence(new NumberType(1L));
-        Initial_Values.add(new NumberType(3L));
+    protected TriangleSequence setInitialValues_Long(){
+        TriangleSequence Initial_Values = new TriangleSequence("Long", false);
+        Initial_Values.add(new TriangleNumberType(1L));
+        Initial_Values.add(new TriangleNumberType(3L));
         return Initial_Values;
     }
-    protected TriangleSequence generateInitialValues_BigInteger(){
-        TriangleSequence Initial_Values = new TriangleSequence(new NumberType(BigInteger.ONE));
-        Initial_Values.add(new NumberType(new BigInteger("3")));
+    protected TriangleSequence setInitialValues_BigInteger(){
+        TriangleSequence Initial_Values = new TriangleSequence("BigInteger", false);
+        Initial_Values.add(new TriangleNumberType(BigInteger.ONE));
+        Initial_Values.add(new TriangleNumberType(new BigInteger("3")));
         return Initial_Values;
     }
 

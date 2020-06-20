@@ -1,11 +1,11 @@
 package tools.numbers.divisors;
 
 import org.codehaus.groovy.runtime.typehandling.BigIntegerMath;
-
 import java.math.BigInteger;
 
 public class Divisors {
 
+    /* Count the divisors of a number. */
     public static Integer countDivisors(int n){
         int count = 0;
         for (int i = 1; i*i <= n; i++)
@@ -39,5 +39,4 @@ public class Divisors {
             }
         return count;
     }
-
 }
