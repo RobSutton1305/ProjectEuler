@@ -4,8 +4,6 @@ import java.math.BigInteger;
 
 public abstract class PrimeFactors {
 
-    // TODO - Create a PrimeNumberType ?
-
     /* Returns the largest prime factor of a Long, Integer or BigInteger */
     public static Long findLargestPrimeFactor(long n) {
         Long result;
