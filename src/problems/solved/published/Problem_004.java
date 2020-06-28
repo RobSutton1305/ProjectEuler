@@ -1,8 +1,12 @@
-package problems.solved;
+package problems.solved.published;
 
 import problems.ProblemSolver;
 import tools.numbers.types.PalindromeNumberType;
 
+/**
+ Answer : 906609
+ Time Taken : 1.27099E-4 seconds
+ */
 public class Problem_004 extends ProblemSolver {
 
     public Problem_004() {
@@ -20,11 +24,6 @@ public class Problem_004 extends ProblemSolver {
             }
         }
         return "Error";
-    }
-
-    public void testProblem_004() {
-        ProblemSolver Problem = new Problem_004();
-        assert Problem.checkResult();
     }
 
 }

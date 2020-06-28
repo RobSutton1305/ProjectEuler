@@ -1,9 +1,13 @@
-package problems.solved;
+package problems.solved.published;
 
 import problems.ProblemSolver;
 import tools.numbers.factors.PrimeFactors;
 
-public class Problem_003 extends ProblemSolver {
+/**
+ *  Answer : 6857
+ *  Time Taken : 2.68673E-4 seconds
+*/
+ public class Problem_003 extends ProblemSolver {
 
     public Problem_003() {
         super("6857");
@@ -13,11 +17,6 @@ public class Problem_003 extends ProblemSolver {
     public String solve() {
         long l = 600851475143L;
         return PrimeFactors.findLargestPrimeFactor(l).toString();
-    }
-
-    public void testProblem_003() {
-        ProblemSolver Problem = new Problem_003();
-        assert Problem.checkResult();
     }
 
 }

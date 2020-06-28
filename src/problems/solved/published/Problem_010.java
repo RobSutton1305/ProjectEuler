@@ -1,8 +1,12 @@
-package problems.solved;
+package problems.solved.published;
 
 import problems.ProblemSolver;
 import java.util.BitSet;
 
+/**
+ * Answer : 142913828922
+ * Time Taken : 0.046642066 seconds
+ */
 public class Problem_010 extends ProblemSolver {
 
     private final int N = 2000000;
@@ -36,11 +40,6 @@ public class Problem_010 extends ProblemSolver {
             }
         }
         return Long.toString(sum);
-    }
-
-    public void testProblem_010() {
-        ProblemSolver Problem = new Problem_010();
-        assert Problem.checkResult();
     }
 
 }

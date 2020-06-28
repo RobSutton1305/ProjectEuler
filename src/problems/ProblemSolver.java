@@ -35,8 +35,11 @@ public abstract class ProblemSolver extends GroovyTestCase {
         }
     }
 
-    public Boolean checkResult(){
+    protected Boolean checkResult(){
         return this.ANSWER.equals(this.EXPECTED_ANSWER);
     }
 
+    public void testProblem() throws IllegalAccessException, InstantiationException {
+        assert this.getClass().newInstance().checkResult();
+    }
 }

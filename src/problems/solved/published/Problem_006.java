@@ -1,7 +1,11 @@
-package problems.solved;
+package problems.solved.published;
 
 import problems.ProblemSolver;
 
+/**
+ Answer : 25164150
+ Time Taken : 3.627E-6 seconds
+ */
 public class Problem_006 extends ProblemSolver {
 
     public Problem_006() {
@@ -16,11 +20,6 @@ public class Problem_006 extends ProblemSolver {
         for (int k = 1; k < 101; k++){ squareSum += k; }
         squareSum *= squareSum;
         return Integer.toString(squareSum - sumSquares);
-    }
-
-    public void testProblem_006() {
-        ProblemSolver Problem = new Problem_006();
-        assert Problem.checkResult();
     }
 
 }

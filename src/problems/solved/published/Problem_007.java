@@ -1,8 +1,12 @@
-package problems.solved;
+package problems.solved.published;
 
 import problems.ProblemSolver;
 import tools.numbers.primes.Primes;
 
+/**
+ Answer : 104743
+ Time Taken : 2.152E-6 seconds
+ */
 public class Problem_007 extends ProblemSolver {
 
     private tools.numbers.primes.Primes Primes;
@@ -23,9 +27,5 @@ public class Problem_007 extends ProblemSolver {
         return Integer.toString(primes[n - 1]);
     }
 
-    public void testProblem_007() {
-        ProblemSolver Problem = new Problem_007();
-        assert Problem.checkResult();
-    }
 
 }

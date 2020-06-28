@@ -1,9 +1,13 @@
-package problems.solved;
+package problems.solved.published;
 
 import problems.ProblemSolver;
 import tools.numbers.sequences.FibonacciSequence;
 import tools.numbers.types.NumberType;
 
+/**
+ Answer : 4613732
+ Time Taken : 2.92028E-4 seconds
+ */
 public class Problem_002 extends ProblemSolver {
 
     public Problem_002(){
@@ -21,11 +25,6 @@ public class Problem_002 extends ProblemSolver {
             if (++INDEX % 3 == 0) sumEvenFibonacci += (Integer)N.VALUE;
         }
         return Long.toString(sumEvenFibonacci);
-    }
-
-    public void testProblem_002() {
-        ProblemSolver Problem = new Problem_002();
-        assert Problem.checkResult();
     }
 
 }

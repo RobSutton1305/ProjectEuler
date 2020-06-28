@@ -1,7 +1,11 @@
-package problems.solved;
+package problems.solved.published;
 
 import problems.ProblemSolver;
 
+/**
+ Answer : 31875000
+ Time Taken : 0.151799942 seconds
+ */
 public class Problem_009 extends ProblemSolver {
 
     public Problem_009() {
@@ -21,11 +25,6 @@ public class Problem_009 extends ProblemSolver {
             }
         }
         return "Error";
-    }
-
-    public void testProblem_009() {
-        ProblemSolver Problem = new Problem_009();
-        assert Problem.checkResult();
     }
 
 }
