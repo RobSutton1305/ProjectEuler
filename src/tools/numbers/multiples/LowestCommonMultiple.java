@@ -1,13 +1,30 @@
 package tools.numbers.multiples;
 
+import tools.numbers.primes.PrimeFactorization;
 import tools.numbers.types.NumberType;
+import java.math.BigInteger;
 
-import java.util.ArrayList;
 // TODO THIS
-public class LowestCommonMultiple extends ArrayList<NumberType>{
+public class LowestCommonMultiple {
+
+    private final BigInteger BigIntegerRepresentation;
+
+    // prime array TODO
+    // prime exponents TODO
 
     public LowestCommonMultiple(){
-        super();
+        this.BigIntegerRepresentation = BigInteger.ZERO;
     }
 
+    public void add(PrimeFactorization PrimeFactorization){
+        // TODO
+        for (NumberType PrimeFactor : PrimeFactorization){
+            // process PrimeFactor
+            System.out.println("");
+        }
+    }
+
+    public String toString(){
+        return this.BigIntegerRepresentation.toString();
+    }
 }

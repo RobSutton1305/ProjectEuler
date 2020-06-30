@@ -1,6 +1,5 @@
 package tools.numbers.divisors
 
-import org.junit.Test
 import static tools.numbers.divisors.Divisors.countDivisors
 
 class DivisorsTest extends GroovyTestCase {
@@ -11,7 +10,6 @@ class DivisorsTest extends GroovyTestCase {
     private Long L
     private BigInteger B
 
-    @Override
     void setUp()  {
         super.setUp()
         N = new Integer(this.INPUT)
@@ -19,21 +17,13 @@ class DivisorsTest extends GroovyTestCase {
         B = new BigInteger(this.INPUT)
     }
 
-    @Override
-    void tearDown() {
-        super.tearDown()
-    }
-
     /* Test the countDivisors Method */
-    @Test
     void testCountDivisors_withInteger() {
         assert countDivisors(N).toString() == EXPECTED_ANSWER
     }
-    @Test
     void testCountDivisors_withLong() {
         assert countDivisors(L).toString() == EXPECTED_ANSWER
     }
-    @Test
     void testCountDivisors_withBigInteger() {
         assert countDivisors(B).toString() == EXPECTED_ANSWER
     }

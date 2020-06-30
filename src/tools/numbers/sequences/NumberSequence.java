@@ -4,7 +4,7 @@ import tools.numbers.types.NumberType;
 import java.math.BigInteger;
 import java.util.LinkedList;
 
-public abstract class NumberSequence extends LinkedList<NumberType> {
+public abstract class NumberSequence extends LinkedList<NumberType> implements Iterable<NumberType>{
 
     public final String NUMBER_CLASS;
 
@@ -68,14 +68,14 @@ public abstract class NumberSequence extends LinkedList<NumberType> {
     }
 
     /* This finds the first N values then stops. */
-    public void iterateUpToNthIndex(int N){
+    public void generateUpToNthIndex(int N){
         while(this.size() < N){
             generateNext();
         }
     }
 
     /* This finds a value greater than LIMIT then stops. */
-    public void iterateUpToLimit(String LIMIT){
+    public void generateUpToLimit(String LIMIT){
         // Iterate until we have gone far enough.
         while(new BigInteger(this.getLast().toString()).compareTo(new BigInteger(LIMIT)) < 0){
             generateNext();
@@ -86,5 +86,7 @@ public abstract class NumberSequence extends LinkedList<NumberType> {
     public void printSequence(){
         this.forEach(NumberType::print);
     }
+
+
 
 }

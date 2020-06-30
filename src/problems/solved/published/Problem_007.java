@@ -1,7 +1,7 @@
 package problems.solved.published;
 
 import problems.ProblemSolver;
-import tools.numbers.primes.Primes;
+import tools.numbers.sequences.PrimeSequence;
 
 /**
  Answer : 104743
@@ -9,7 +9,7 @@ import tools.numbers.primes.Primes;
  */
 public class Problem_007 extends ProblemSolver {
 
-    private tools.numbers.primes.Primes Primes;
+    private PrimeSequence PrimeSequence;
 
     public Problem_007() {
         super("104743");
@@ -17,14 +17,13 @@ public class Problem_007 extends ProblemSolver {
 
     @Override
     public void init() {
-        this.Primes = new Primes(123456); // Big enough that prime array is over 10001 in length
+        this.PrimeSequence = new PrimeSequence("Integer");
     }
 
     @Override
     public String solve() {
-        int[] primes = this.Primes.getPrimeArray();
-        int n = 10001;
-        return Integer.toString(primes[n - 1]);
+        this.PrimeSequence.generateUpToNthIndex(10001);
+        return this.PrimeSequence.get(10001 - 1).toString();
     }
 
 

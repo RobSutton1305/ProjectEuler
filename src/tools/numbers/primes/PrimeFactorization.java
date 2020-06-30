@@ -1,9 +1,32 @@
-package tools.numbers.factors;
+package tools.numbers.primes;
 
+import tools.numbers.sequences.PrimeSequence;
+import tools.numbers.types.NumberType;
 import java.math.BigInteger;
+import java.util.LinkedList;
 
-public abstract class PrimeFactors {
+public class PrimeFactorization extends PrimeSequence {
 
+    private final LinkedList<Integer> EXPONENTS;
+
+    public PrimeFactorization(String NUMBER_CLASS) {
+        super(NUMBER_CLASS);
+        this.EXPONENTS = new LinkedList<>();
+        this.setInitialExponents();
+    }
+
+    private void setInitialExponents(){
+        for (NumberType N : this){
+            this.EXPONENTS.add(1);
+        }
+    }
+
+    @Override
+    public void printSequence() {
+        this.forEach(NumberType::print);
+    }
+
+    /* TODO - Do these belong here? */
     /* Returns the largest prime factor of a Long, Integer or BigInteger */
     public static Long findLargestPrimeFactor(long n) {
         Long result;

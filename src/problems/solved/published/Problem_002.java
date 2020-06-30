@@ -19,7 +19,7 @@ public class Problem_002 extends ProblemSolver {
         Integer sumEvenFibonacci = 0;
         // Initial Numbers
         FibonacciSequence FibonacciSequence = new FibonacciSequence("Integer");
-        FibonacciSequence.iterateUpToLimit("4000000");
+        FibonacciSequence.generateUpToLimit("4000000");
         int INDEX = 0; // Every third Fibonacci number is even.
         for (NumberType N : FibonacciSequence){
             if (++INDEX % 3 == 0) sumEvenFibonacci += (Integer)N.VALUE;

@@ -1,7 +1,7 @@
 package problems.solved.published;
 
 import problems.ProblemSolver;
-import tools.numbers.factors.PrimeFactors;
+import tools.numbers.primes.PrimeFactorization;
 
 /**
  *  Answer : 6857
@@ -16,7 +16,7 @@ import tools.numbers.factors.PrimeFactors;
     @Override
     public String solve() {
         long l = 600851475143L;
-        return PrimeFactors.findLargestPrimeFactor(l).toString();
+        return PrimeFactorization.findLargestPrimeFactor(l).toString();
     }
 
 }

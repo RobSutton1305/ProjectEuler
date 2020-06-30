@@ -5,10 +5,13 @@ import tools.numbers.types.PrimeNumberType;
 import java.math.BigInteger;
 import java.util.BitSet;
 
+/**
+ * PrimeSequence Object used for generating sequential Primes.
+ */
 public class PrimeSequence extends NumberSequence {
 
     private BitSet PrimeBits;
-    private final int BitSetLIMIT = 1000000;
+    private final int BitSetLIMIT = 1000000; // TODO - Set this via constructor to avoid bullshit
 
     /* Public Constructor */
     public PrimeSequence(String NUMBER_CLASS) {
@@ -73,6 +76,7 @@ public class PrimeSequence extends NumberSequence {
         }
     }
 
+
     /* TODO - Long and Integer versions */
     public Boolean isValid(BigInteger B) {
         // Return false if B < 2
@@ -98,9 +102,32 @@ public class PrimeSequence extends NumberSequence {
     }
 
     /* Generate Next Prime - TODO
-    * The isValid method checks bigger primes but doesn't add them this List
-    * The primes would be out of order unless they are isValid checks in increasing magnitude.
-    * This method should be called to find them in the right order so we can add them to the list as we go*/
+     *
+     * The isValid method checks bigger primes but doesn't add them this List
+     * The primes would be out of order unless they are isValid checks in increasing magnitude.
+     * This method should be called to find them in the right order so we can add them to the list as we go
+     *
+     *
+     * I stole this from Primes before deleting it.
+     *     public int nextPrime(int p){
+     *         do p += 2; while (isPrime(p));
+     *         return p;
+     *     }
+     *     // Check if n is prime
+     *     public boolean isPrime(int n) {
+     *         for (int i = 0; primeArray[i] * primeArray[i] <= n; i++) {
+     *             if (n % 6 != 1 && n % 6 != 5) { // this looks like it can be taken outside the for loop
+     *                 return false;
+     *             }
+     *             if (n % primeArray[i] == 0) {
+     *                 return false;
+     *             }
+     *         }
+     *         return true;
+     *     }
+     *
+     */
+
     protected PrimeNumberType generateNext_Integer() {
         return null;
     }

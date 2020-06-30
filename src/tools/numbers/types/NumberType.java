@@ -1,9 +1,8 @@
 package tools.numbers.types;
 
 import java.math.BigInteger;
-import java.util.Iterator;
 
-public abstract class NumberType implements Iterable {
+public abstract class NumberType {
 
     public final String NumberClass;
     public final Number VALUE;
@@ -21,17 +20,10 @@ public abstract class NumberType implements Iterable {
         this.VALUE = VALUE;
     }
 
-    /* TODO Fix This */
-    @Override
-    public Iterator<NumberType> iterator() {
-        return this.iterator();
-    }
-
     public Boolean isValid(){
         return true;
     }
 
-    /* TODO Check negative number to string */
     public String toString(){
         return VALUE.toString();
     }
