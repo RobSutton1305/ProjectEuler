@@ -1,25 +1,32 @@
 package tools.numbers.types;
+/*
+    Project Euler - PrimeNumberType - Created by Rob Sutton on 03/07/2020
+*/
 
 import java.math.BigInteger;
 
 public class PrimeNumberType extends NumberType {
 
-    public PrimeNumberType(Integer VALUE) {
-        super(VALUE);
+    public PrimeNumberType(Integer value) {
+        super(value);
     }
-    public PrimeNumberType(Long VALUE) {
-        super(VALUE);
+    public PrimeNumberType(Long value) {
+        super(value);
     }
-    public PrimeNumberType(BigInteger VALUE) {
-        super(VALUE);
+    public PrimeNumberType(BigInteger value) {
+        super(value);
     }
 
     @Override
-    public String print() {
-        /* Print method doesn't need validity check since all Prime Numbers are generated validly */
-        String TEXT = this.NumberClass +" : "+this.toString();
-        System.out.println(TEXT);
-        return TEXT;
+    public Boolean isValid() {
+        return null;
+    }
+
+    @Override
+    public String print(Boolean toSystemOut) {
+        String text = "CLASS:"+this.NUMBER_CLASS +" VALUE:"+VALUE.toString();
+        if (toSystemOut) System.out.println(text);
+        return text;
     }
 
 

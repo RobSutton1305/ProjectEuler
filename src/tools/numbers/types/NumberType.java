@@ -1,37 +1,40 @@
 package tools.numbers.types;
+/*
+    Project Euler - NumberType - Created by Rob Sutton on 03/07/2020
+*/
 
 import java.math.BigInteger;
-
+/* TODO - Implement Generics and make decision on weird NumberType thing*/
 public abstract class NumberType {
 
-    public final String NumberClass;
+    protected final String NUMBER_CLASS;
     public final Number VALUE;
 
-    public NumberType(Integer VALUE){
-        this.NumberClass = "Integer";
-        this.VALUE = VALUE;
+    public NumberType(Integer value){
+        this.NUMBER_CLASS = "Integer";
+        this.VALUE = value;
     }
-    public NumberType(Long VALUE){
-        this.NumberClass = "Long";
-        this.VALUE = VALUE;
+    public NumberType(Long value){
+        this.NUMBER_CLASS = "Long";
+        this.VALUE = value;
     }
-    public NumberType(BigInteger VALUE){
-        this.NumberClass = "BigInteger";
-        this.VALUE = VALUE;
-    }
-
-    public Boolean isValid(){
-        return true;
+    public NumberType(BigInteger value){
+        this.NUMBER_CLASS = "BigInteger";
+        this.VALUE = value;
     }
 
-    public String toString(){
-        return VALUE.toString();
+    protected abstract Boolean isValid();
+
+    /* Return and Print */
+    public String print(Boolean toSystemOut){
+        String text = "CLASS:"+this.NUMBER_CLASS +" VALUE:"+valueToString() + " isValid:"+this.isValid();
+        if (toSystemOut) System.out.println(text);
+        return text;
     }
 
-    public String print(){
-        String TEXT = this.NumberClass +" : "+this.toString() + " valid? "+this.isValid();
-        System.out.println(TEXT);
-        return TEXT;
+    /* Get Numeric Value as String*/
+    public String valueToString(){
+        return this.VALUE.toString();
     }
 
 }

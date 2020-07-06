@@ -1,92 +1,169 @@
 package tools.numbers.sequences;
+/*
+    Project Euler - NumberSequence - Created by Rob Sutton on 03/07/2020
+*/
 
+import org.codehaus.groovy.runtime.typehandling.BigIntegerMath;
 import tools.numbers.types.NumberType;
+
 import java.math.BigInteger;
 import java.util.LinkedList;
 
 public abstract class NumberSequence extends LinkedList<NumberType> implements Iterable<NumberType>{
 
+    // Supported NumberTypes are "Integer" ""BigInteger" and "Long"
     public final String NUMBER_CLASS;
+    // LIMIT can be passed to setInitialValues() method during construction
+    protected final String LIMIT;
 
-    /* Public Constructor*/
-    public NumberSequence(String NUMBER_CLASS){
-        this(NUMBER_CLASS, true);
+    /* Constructors
+     * Can optionally set LIMIT but its not required for self generating sequences.
+     * Its used in Prime since we generate all the primes at once using a sieve
+     */
+    public NumberSequence(String numberClass){
+        this(numberClass, true);
+    }
+    public NumberSequence(String numberClass, String limit) {
+        this(numberClass, limit, true);
     }
 
-    /* Private Constructor for Initialising Values */
-    protected NumberSequence(String NUMBER_CLASS, Boolean GET_INITIAL_VALUES){
-        super();
-        this.NUMBER_CLASS = NUMBER_CLASS;
-        if (GET_INITIAL_VALUES){
+    /* Constructors
+     * Used internally for generating initial values
+     */
+    protected NumberSequence(String numberClass, Boolean getInitialValues){
+        this.NUMBER_CLASS = numberClass;
+        this.LIMIT = "";
+        if (getInitialValues){
             this.addAll(setInitialValues());
+        }
+    }
+    protected NumberSequence(String numberClass, String limit, Boolean getInitialValues){
+        this.NUMBER_CLASS = numberClass;
+        this.LIMIT = limit;
+        if (getInitialValues){
+            this.addAll(setInitialValues(limit));
         }
     }
 
     /* Creates the initial values. */
-    protected NumberSequence setInitialValues(){
+    protected NumberSequence setInitialValues(String limit){
         if(this.NUMBER_CLASS.equals("Integer")) {
-            return setInitialValues_Integer();
+            return setInitialValuesInteger(limit);
         }
         if(this.NUMBER_CLASS.equals("Long")) {
-            return setInitialValues_Long();
+            return setInitialValuesLong(limit);
         }
         if(this.NUMBER_CLASS.equals("BigInteger")) {
-             return setInitialValues_BigInteger();
+             return setInitialValuesBigInteger(limit);
         }
         return null;
     }
-    protected NumberSequence setInitialValues_Integer(){
+    protected NumberSequence setInitialValuesInteger(String limit){
         return null;
     }
-    protected NumberSequence setInitialValues_Long(){
+    protected NumberSequence setInitialValuesLong(String limit){
         return null;
     }
-    protected NumberSequence setInitialValues_BigInteger(){
+    protected NumberSequence setInitialValuesBigInteger(String limit){
+        return null;
+    }
+    protected NumberSequence setInitialValues(){
+        if(this.NUMBER_CLASS.equals("Integer")) {
+            return setInitialValuesInteger();
+        }
+        if(this.NUMBER_CLASS.equals("Long")) {
+            return setInitialValuesLong();
+        }
+        if(this.NUMBER_CLASS.equals("BigInteger")) {
+            return setInitialValuesBigInteger();
+        }
+        return null;
+    }
+    protected NumberSequence setInitialValuesInteger(){
+        return null;
+    }
+    protected NumberSequence setInitialValuesLong(){
+        return null;
+    }
+    protected NumberSequence setInitialValuesBigInteger(){
         return null;
     }
 
     /* Used to generate the next value. */
     public void generateNext(){
         if(this.NUMBER_CLASS.equals("Integer")) {
-            this.add(generateNext_Integer());
+            this.add(generateNextInteger());
         }
         if(this.NUMBER_CLASS.equals("Long")) {
-            this.add(generateNext_Long());
+            this.add(generateNextLong());
         }
         if(this.NUMBER_CLASS.equals("BigInteger")) {
-            this.add(generateNext_BigInteger());
+            this.add(generateNextBigInteger());
         }
     }
-    protected NumberType generateNext_Integer(){
+    protected NumberType generateNextInteger(){
         return null;
     }
-    protected NumberType generateNext_Long(){
+    protected NumberType generateNextLong(){
         return null;
     }
-    protected NumberType generateNext_BigInteger(){
+    protected NumberType generateNextBigInteger(){
         return null;
     }
 
     /* This finds the first N values then stops. */
-    public void generateUpToNthIndex(int N){
-        while(this.size() < N){
+    public void generateUpToNthIndex(int indexInSequence){
+        while(this.size() < indexInSequence){
             generateNext();
         }
     }
 
-    /* This finds a value greater than LIMIT then stops. */
-    public void generateUpToLimit(String LIMIT){
-        // Iterate until we have gone far enough.
-        while(new BigInteger(this.getLast().toString()).compareTo(new BigInteger(LIMIT)) < 0){
+    /* This finds a value greater than limit then stops. */
+    public void generateUpToLimit(String limit){
+        while(new BigInteger(this.getLast().valueToString()).compareTo(new BigInteger(limit)) < 0){
             generateNext();
         }
     }
 
-    /* Calls NumberType.print() for each value in the sequence */
-    public void printSequence(){
-        this.forEach(NumberType::print);
+    /* getNthElementAsString */
+    protected String getNthElementAsString(int indexInSequence){
+        int indexInLinkedList = indexInSequence - 1;
+        return this.get(indexInLinkedList).valueToString();
+    }
+    protected String getElementAtLimitAsString(String limit, Boolean afterLimit){
+        BigInteger bigLimit = new BigInteger(limit);
+        String lastPrimeToString = "";
+        for (NumberType currentPrime : this){
+            BigInteger bigCurrentPrime = new BigInteger(currentPrime.valueToString());
+            if (BigIntegerMath.compareTo(bigCurrentPrime, bigLimit) < 0){
+                lastPrimeToString = currentPrime.valueToString();
+            } else {
+                if (afterLimit) return currentPrime.valueToString();
+                return lastPrimeToString;
+            }
+        }
+        return "0"; // limit larger than biggest prime
     }
 
+    /* Print to System.out */
+    public String printSequence(Boolean toSystemOut) {
+        StringBuilder textOutput = new StringBuilder();
+        for (int indexInSequence = 1; indexInSequence <= this.size(); indexInSequence++) {
+            textOutput.append(this.printSequence(indexInSequence, toSystemOut));
+        }
+        return textOutput.toString();
+    }
 
+    public String printSequence(int indexInSequence, Boolean toSystemOut){
+        int indexInLinkedList = indexInSequence - 1;
+        String sequenceElementToString = "NumberType{" + this.get(indexInLinkedList).print(false) + "}" +
+                " INDEX:" +
+                indexInSequence +
+                " NthElement:" +
+                this.getNthElementAsString(indexInSequence) +
+                "\n";
+        if (toSystemOut) System.out.println(sequenceElementToString);
+        return sequenceElementToString;
+    }
 
 }

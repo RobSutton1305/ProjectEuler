@@ -1,4 +1,7 @@
 package tools.numbers.multiples;
+/*
+    Project Euler - LowestCommonMultiple - Created by Rob Sutton on 03/07/2020
+*/
 
 import tools.numbers.primes.PrimeFactorization;
 import tools.numbers.types.NumberType;

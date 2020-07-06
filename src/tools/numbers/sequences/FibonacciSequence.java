@@ -1,4 +1,7 @@
 package tools.numbers.sequences;
+/*
+    Project Euler - FibonacciSequence - Created by Rob Sutton on 03/07/2020
+*/
 
 import org.codehaus.groovy.runtime.typehandling.BigIntegerMath;
 import org.codehaus.groovy.runtime.typehandling.IntegerMath;
@@ -8,49 +11,44 @@ import java.math.BigInteger;
 
 public class FibonacciSequence extends NumberSequence {
 
-    /**
-        Max for Integer is 46 --> 1836311903 (45) if LIMIT method is used
-        Max for Long is 92    --> 7540113804746346429 (91)
-     */
-
     /* Public Constructor */
-    public FibonacciSequence(String NUMBER_CLASS) {
-        super(NUMBER_CLASS);
+    public FibonacciSequence(String numberClass) {
+        super(numberClass);
     }
     /* Private Constructor - Used to return Initial Values */
-    private FibonacciSequence(String NUMBER_CLASS, @SuppressWarnings("SameParameterValue") Boolean GET_INITIAL_VALUES) {
-        super(NUMBER_CLASS, GET_INITIAL_VALUES);
+    private FibonacciSequence(String numberClass , Boolean getInitialValues) {
+        super(numberClass, getInitialValues);
     }
 
-    /* Define Initial Values Here */
-    protected FibonacciSequence setInitialValues_Integer(){
-        FibonacciSequence Initial_Values = new FibonacciSequence("Integer", false);
-        Initial_Values.add(new FibonacciNumberType(1));
-        Initial_Values.add(new FibonacciNumberType(1));
-        return Initial_Values;
+    /* Define initial values */
+    protected FibonacciSequence setInitialValuesInteger(){
+        FibonacciSequence initialValues = new FibonacciSequence("Integer", false);
+        initialValues.add(new FibonacciNumberType(1));
+        initialValues.add(new FibonacciNumberType(1));
+        return initialValues;
     }
-    protected FibonacciSequence setInitialValues_Long(){
-        FibonacciSequence Initial_Values = new FibonacciSequence("Long", false);
-        Initial_Values.add(new FibonacciNumberType(1L));
-        Initial_Values.add(new FibonacciNumberType(1L));
-        return Initial_Values;
+    protected FibonacciSequence setInitialValuesLong(){
+        FibonacciSequence initialValues = new FibonacciSequence("Long", false);
+        initialValues.add(new FibonacciNumberType(1L));
+        initialValues.add(new FibonacciNumberType(1L));
+        return initialValues;
     }
-    protected FibonacciSequence setInitialValues_BigInteger(){
-        FibonacciSequence Initial_Values = new FibonacciSequence("BigInteger", false);
-        Initial_Values.add(new FibonacciNumberType(BigInteger.ONE));
-        Initial_Values.add(new FibonacciNumberType(BigInteger.ONE));
-        return Initial_Values;
+    protected FibonacciSequence setInitialValuesBigInteger(){
+        FibonacciSequence initialValues = new FibonacciSequence("BigInteger", false);
+        initialValues.add(new FibonacciNumberType(BigInteger.ONE));
+        initialValues.add(new FibonacciNumberType(BigInteger.ONE));
+        return initialValues;
     }
 
-    // Generate Next Value
-    protected FibonacciNumberType generateNext_Integer(){
-        return new FibonacciNumberType((Integer) IntegerMath.add(this.get(this.size()-1).VALUE,this.get(this.size()-2).VALUE) );
+    /* Generate the next value */
+    protected FibonacciNumberType generateNextInteger(){
+        return new FibonacciNumberType((Integer) IntegerMath.add(this.getLast().VALUE,this.get(this.size()-2).VALUE) );
     }
-    protected FibonacciNumberType generateNext_Long(){
-        return new FibonacciNumberType((Long) LongMath.add(this.get(this.size()-1).VALUE,this.get(this.size()-2).VALUE) );
+    protected FibonacciNumberType generateNextLong(){
+        return new FibonacciNumberType((Long) LongMath.add(this.getLast().VALUE,this.get(this.size()-2).VALUE) );
     }
-    protected FibonacciNumberType generateNext_BigInteger(){
-        return new FibonacciNumberType((BigInteger) BigIntegerMath.add(this.get(this.size()-1).VALUE,this.get(this.size()-2).VALUE) );
+    protected FibonacciNumberType generateNextBigInteger(){
+        return new FibonacciNumberType((BigInteger) BigIntegerMath.add(this.getLast().VALUE,this.get(this.size()-2).VALUE) );
     }
 
 }

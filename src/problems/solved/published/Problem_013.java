@@ -1,12 +1,13 @@
 package problems.solved.published;
+/*
+    Project Euler - Problem_013 - Solved by Rob Sutton on 03/07/2020
+	    Answer : 5537376230
+	    Time Taken : 0.001109363 second
+*/
 
 import problems.ProblemSolver;
 import java.math.BigInteger;
 
-/**
- *  Answer : 5537376230
- *  Time Taken : 0.001109363 second
- */
 public class Problem_013 extends ProblemSolver {
 
     public Problem_013() {
@@ -15,11 +16,11 @@ public class Problem_013 extends ProblemSolver {
 
     @Override
     public String solve(){
-        BigInteger B = BigInteger.ZERO;
+        BigInteger bigInteger = BigInteger.ZERO;
         for (int i = 0; i < 100; i++) {
-            B = B.add(new BigInteger(ONE_HUNDRED_50_DIGIT_NUMBERS.substring(50 * i,50 * i + 11))); // Sufficient
+            bigInteger = bigInteger.add(new BigInteger(ONE_HUNDRED_50_DIGIT_NUMBERS.substring(50 * i,50 * i + 11))); // Sufficient
         }
-        return B.toString().substring(0,10);
+        return bigInteger.toString().substring(0,10);
     }
 
     private final static String ONE_HUNDRED_50_DIGIT_NUMBERS =

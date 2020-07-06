@@ -1,69 +1,65 @@
 package tools.numbers.sequences
+/*
+    Project Euler - TriangleSequenceTest - Created by Rob Sutton on 03/07/2020
+*/
 
 class TriangleSequenceTest extends GroovyTestCase {
 
-    private Integer INDEX
-    private String VALUE, LIMIT
+    private final Integer INDEX = 44
+    private final String VALUE_AT_INDEX = "990"
+    private final String LIMIT = "1000"
+    private final String VALUE_BEFORE_LIMIT = "990"
+    private final String VALUE_AFTER_LIMIT = "1035"
 
-    @Override
-    protected void setUp() {
-        super.setUp()
-        this.LIMIT = "1000"
-        this.VALUE = "990"
-        this.INDEX = 44
-    }
-
-    /* Testing the getNthValue method */
+    /* Testing generateUpToNthIndex and getNthElementAsString */
     void testTriangleSequence_getNthValue_withInteger() {
-        NumberSequence Sequence = new TriangleSequence("Integer")
-        Sequence.generateUpToNthIndex(this.INDEX)
-        assert Sequence.getLast().toString() == this.VALUE
+        NumberSequence numberSequence = new TriangleSequence("Integer")
+        numberSequence.generateUpToNthIndex(this.INDEX)
+        assert numberSequence.getLast().valueToString() == this.VALUE_AT_INDEX
     }
     void testTriangleSequence_getNthValue_withLong() {
-        NumberSequence Sequence = new TriangleSequence("Long")
-        Sequence.generateUpToNthIndex(this.INDEX)
-        assert Sequence.getLast().toString() == this.VALUE
+        NumberSequence numberSequence = new TriangleSequence("Long")
+        numberSequence.generateUpToNthIndex(this.INDEX)
+        assert numberSequence.getLast().valueToString() == this.VALUE_AT_INDEX
     }
     void testTriangleSequence_getNthValue_withBigInteger() {
-        NumberSequence Sequence = new TriangleSequence("BigInteger")
-        Sequence.generateUpToNthIndex(this.INDEX)
-        assert Sequence.getLast().toString() == this.VALUE
+        NumberSequence numberSequence = new TriangleSequence("BigInteger")
+        numberSequence.generateUpToNthIndex(this.INDEX)
+        assert numberSequence.getLast().valueToString() == this.VALUE_AT_INDEX
     }
 
-    /* Testing the iterateUpToLimit method */
+    /* Testing generateUpToLimit and getElementAtLimitAsString */
     void testTriangleSequence_iterateUpToLimit_withInteger() {
-        NumberSequence Sequence = new TriangleSequence("Integer")
-        Sequence.generateUpToLimit(this.LIMIT)
-        assert Sequence.get(Sequence.size()-2).toString() == this.VALUE
+        NumberSequence numberSequence = new TriangleSequence("Integer")
+        numberSequence.generateUpToLimit(this.LIMIT)
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,false) == this.VALUE_BEFORE_LIMIT
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,true) == this.VALUE_AFTER_LIMIT
     }
     void testTriangleSequence_iterateUpToLimit_withLong() {
-        NumberSequence Sequence = new TriangleSequence("Long")
-        Sequence.generateUpToLimit(this.LIMIT)
-        assert Sequence.get(Sequence.size()-2).toString() == this.VALUE     }
+        NumberSequence numberSequence = new TriangleSequence("Long")
+        numberSequence.generateUpToLimit(this.LIMIT)
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,false) == this.VALUE_BEFORE_LIMIT
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,true) == this.VALUE_AFTER_LIMIT
+    }
     void testTriangleSequence_iterateUpToLimit_withBigInteger() {
-        NumberSequence Sequence = new TriangleSequence("BigInteger")
-        Sequence.generateUpToLimit(this.LIMIT)
-        assert Sequence.get(Sequence.size()-2).toString() == this.VALUE
+        NumberSequence numberSequence = new TriangleSequence("BigInteger")
+        numberSequence.generateUpToLimit(this.LIMIT)
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,false) == this.VALUE_BEFORE_LIMIT
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,true) == this.VALUE_AFTER_LIMIT
     }
 
-    /* Testing the printSequence method */
+    /* Testing printSequence */
     void testTriangleSequence_printSequence_withInteger() {
-        NumberSequence Sequence = new TriangleSequence("Integer")
-        Sequence.generateUpToLimit("100")
-        Sequence.printSequence()
-        assert true
+        NumberSequence numberSequence = new TriangleSequence("Integer")
+        assert numberSequence.printSequence(false) == "NumberType{CLASS:Integer VALUE:1} INDEX:1 NthElement:1\n"+"NumberType{CLASS:Integer VALUE:3} INDEX:2 NthElement:3\n"
     }
     void testTriangleSequence_printSequence_withLong() {
-        NumberSequence Sequence = new TriangleSequence("Long")
-        Sequence.generateUpToLimit("100")
-        Sequence.printSequence()
-        assert true
+        NumberSequence numberSequence = new TriangleSequence("Long")
+        assert numberSequence.printSequence(false) == "NumberType{CLASS:Long VALUE:1} INDEX:1 NthElement:1\n"+"NumberType{CLASS:Long VALUE:3} INDEX:2 NthElement:3\n"
     }
     void testTriangleSequence_printSequence_withBigInteger() {
-        NumberSequence Sequence = new TriangleSequence("BigInteger")
-        Sequence.generateUpToLimit("100")
-        Sequence.printSequence()
-        assert true
+        NumberSequence numberSequence = new TriangleSequence("BigInteger")
+        assert numberSequence.printSequence(false) == "NumberType{CLASS:BigInteger VALUE:1} INDEX:1 NthElement:1\n"+"NumberType{CLASS:BigInteger VALUE:3} INDEX:2 NthElement:3\n"
     }
 
 }

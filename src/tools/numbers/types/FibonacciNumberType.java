@@ -1,25 +1,34 @@
 package tools.numbers.types;
+/*
+    Project Euler - FibonacciNumberType - Created by Rob Sutton on 03/07/2020
+*/
 
 import java.math.BigInteger;
 
 public class FibonacciNumberType extends NumberType {
 
-    public FibonacciNumberType(Integer VALUE){
-        super(VALUE);
+    public FibonacciNumberType(Integer value){
+        super(value);
     }
-    public FibonacciNumberType(Long VALUE){
-        super(VALUE);
+    public FibonacciNumberType(Long value){
+        super(value);
     }
-    public FibonacciNumberType(BigInteger VALUE){
-        super(VALUE);
+    public FibonacciNumberType(BigInteger value){
+        super(value);
     }
 
+    /* All Fibonacci numbers are generated validly, return true*/
     @Override
-    public String print() {
-        /* Print method doesn't need validity check since all Fibonacci Numbers are generated validly */
-        String TEXT = this.NumberClass +" : "+this.toString();
-        System.out.println(TEXT);
-        return TEXT;
+    public Boolean isValid() {
+        return true;
+    }
+
+    /* Print and Return */
+    @Override
+    public String print(Boolean toSystemOut) {
+        String text = "CLASS:"+this.NUMBER_CLASS +" VALUE:"+this.VALUE;
+        if (toSystemOut) System.out.println(text);
+        return text;
     }
 
 }

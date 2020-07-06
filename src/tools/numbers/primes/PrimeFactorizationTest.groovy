@@ -1,35 +1,30 @@
 package tools.numbers.primes
+/*
+    Project Euler - PrimeFactorizationTest - Created by Rob Sutton on 03/07/2020
+*/
 
 import static PrimeFactorization.findLargestPrimeFactor
 
 class PrimeFactorizationTest extends GroovyTestCase {
 
-    private final String INPUT = "60084753"
-    private final String EXPECTED_ANSWER = "1187"
-    private Integer N
-    private Long L
-    private BigInteger B
+    private final String INPUT = "1543798"
+    private final String BIT_SET_LIMIT = "800000" // TODO-sub optimal method requires this to be n instead of squareRoot(n)
+    private final String PRINT_SEQUENCE = "Prime Factorisation of 1543798: 2^1 771899^1 "
+    private final String LARGEST_PRIME_FACTOR = "771899"
 
-    void setUp()  {
-        super.setUp()
-        N = new Integer(INPUT)
-        L = new Long(INPUT)
-        B = new BigInteger(INPUT)
-    }
-
-    void tearDown() {
-        super.tearDown()
+    void testPrimeFactorization_printSequence(){
+        assert new PrimeFactorization(this.INPUT,this.BIT_SET_LIMIT).printSequence(false) == PRINT_SEQUENCE
     }
 
     void testFindLargestPrimeFactor_withInteger() {
-        assert findLargestPrimeFactor((Integer)N).toString() == EXPECTED_ANSWER
+        assert findLargestPrimeFactor(new Integer(INPUT)).toString() == LARGEST_PRIME_FACTOR
     }
 
     void testFindLargestPrimeFactor_withLong() {
-        assert findLargestPrimeFactor((Long)L).toString() == EXPECTED_ANSWER
+        assert findLargestPrimeFactor(new Long(INPUT)).toString() == LARGEST_PRIME_FACTOR
     }
 
     void testFindLargestPrimeFactor_withBigInteger() {
-        assert findLargestPrimeFactor((BigInteger)B).toString() == EXPECTED_ANSWER
+        assert findLargestPrimeFactor(new BigInteger(INPUT)).toString() == LARGEST_PRIME_FACTOR
     }
 }

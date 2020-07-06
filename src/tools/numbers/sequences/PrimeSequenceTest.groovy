@@ -1,76 +1,92 @@
 package tools.numbers.sequences
+/*
+    Project Euler - PrimeSequenceTest - Created by Rob Sutton on 03/07/2020
+*/
 
 class PrimeSequenceTest extends GroovyTestCase {
 
-    private Integer INDEX
-    private String VALUE, LIMIT
+    private final Integer INDEX = 101
+    private final String VALUE_AT_INDEX = "547"
+    private final String VALUE_BEFORE_LIMIT = "997"
+    private final String VALUE_AFTER_LIMIT = "1009"
+    private final String LIMIT = "1000"
+    private final String BIT_SET_LIMIT = "9000"
 
-    @Override
-    protected void setUp() {
-        super.setUp()
-        this.LIMIT = "104744"
-        this.VALUE = "104743"
-        this.INDEX = 10001
-    }
-
-    /* TODO other types -Testing the isPrime method */
-    void testPrimeSequence_isPrime_withBigInteger() {
-        NumberSequence Sequence = new PrimeSequence("BigInteger")
+    /* Testing isPrime and counting primes under 1 Million - fails by design when bitSetLimit is smaller than bitSetLimit */
+    void testIsValid_withInteger() {
+        NumberSequence numberSequence = new PrimeSequence("Integer","1000000")
         int countPrimes = 0
         for (int i = 0; i < 1000000; i++){
-            if (Sequence.isValid(BigInteger.valueOf(i))) countPrimes++
+            if (numberSequence.isValid(i)) countPrimes++
+        }
+        assert countPrimes == 78498 // Primes under 1M in half a second.
+    }
+    void testIsValid_withLong() {
+        NumberSequence numberSequence = new PrimeSequence("Long","1000000")
+        int countPrimes = 0
+        for (long l = 0; l < 1000000; l++){
+            if (numberSequence.isValid(l)) countPrimes++
+        }
+        assert countPrimes == 78498 // Primes under 1M in half a second.
+    }
+    void testIsValid_withBigInteger() {
+        NumberSequence numberSequence = new PrimeSequence("BigInteger","1000000")
+        int countPrimes = 0
+        for (int i = 0; i < 1000000; i++){
+            if (numberSequence.isValid(BigInteger.valueOf(i))) countPrimes++
         }
         assert countPrimes == 78498 // Primes under 1M in half a second.
     }
 
-    /* Testing the getNthValue method */
-    void testPrimeSequence_getNthValue_withInteger() {
-        NumberSequence Sequence = new PrimeSequence("Integer")
-        Sequence.generateUpToNthIndex(this.INDEX)
-        assert Sequence.get(this.INDEX-1).toString() == this.VALUE
+    /* Testing generateUpToNthIndex and getNthElementAsString */
+    void testGenerateUpToNthIndex_withInteger() {
+        NumberSequence numberSequence = new PrimeSequence("Integer",BIT_SET_LIMIT)
+        numberSequence.generateUpToNthIndex(this.INDEX)
+        assert numberSequence.getNthElementAsString(this.INDEX) == this.VALUE_AT_INDEX
     }
-    void testPrimeSequence_getNthValue_withLong() {
-        NumberSequence Sequence = new PrimeSequence("Long")
-        Sequence.generateUpToNthIndex(this.INDEX)
-        assert Sequence.get(this.INDEX-1).toString() == this.VALUE
+    void testGenerateUpToNthIndex_withLong() {
+        NumberSequence numberSequence = new PrimeSequence("Long",BIT_SET_LIMIT)
+        numberSequence.generateUpToNthIndex(this.INDEX)
+        assert numberSequence.getNthElementAsString(this.INDEX) == this.VALUE_AT_INDEX
     }
-    void testPrimeSequence_getNthValue_withBigInteger() {
-        NumberSequence Sequence = new PrimeSequence("BigInteger")
-        Sequence.generateUpToNthIndex(this.INDEX)
-        assert Sequence.get(this.INDEX-1).toString() == this.VALUE
+    void testGenerateUpToNthIndex_withBigInteger() {
+        NumberSequence numberSequence = new PrimeSequence("BigInteger",BIT_SET_LIMIT)
+        numberSequence.generateUpToNthIndex(this.INDEX)
+        assert numberSequence.getNthElementAsString(this.INDEX) == this.VALUE_AT_INDEX
     }
 
-    /* Testing the iterateUpToLimit method */
-    void testPrimeSequence_iterateUpToLimit_withInteger() {
-        NumberSequence Sequence = new PrimeSequence("Integer")
-        Sequence.generateUpToLimit(this.LIMIT)   // THIS FAILS CURRENTLY TODO - Fix - Prime.genNext doesn't work.
-        assert Sequence.get(Sequence.size()-2).toString() == this.VALUE
+    /* Testing generateUpToLimit and getElementAtLimitAsString */
+    void testGenerateUpToLimit_withInteger() {
+        NumberSequence numberSequence = new PrimeSequence("Integer",BIT_SET_LIMIT)
+        numberSequence.generateUpToLimit(this.LIMIT)
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,false) == this.VALUE_BEFORE_LIMIT
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT, true) == this.VALUE_AFTER_LIMIT
     }
-    void testPrimeSequence_iterateUpToLimit_withLong() {
-        NumberSequence Sequence = new PrimeSequence("Long")
-        Sequence.generateUpToLimit(this.LIMIT)
-        assert Sequence.get(Sequence.size()-2).toString() == this.VALUE     }
-    void testPrimeSequence_iterateUpToLimit_withBigInteger() {
-        NumberSequence Sequence = new PrimeSequence("BigInteger")
-        Sequence.generateUpToLimit(this.LIMIT)
-        assert Sequence.get(Sequence.size()-2).toString() == this.VALUE
+    void testGenerateUpToLimit_withLong() {
+        NumberSequence numberSequence = new PrimeSequence("Long",BIT_SET_LIMIT)
+        numberSequence.generateUpToLimit(this.LIMIT)
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,false) == this.VALUE_BEFORE_LIMIT
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,true) == this.VALUE_AFTER_LIMIT
+    }
+    void testGenerateUpToLimit_withBigInteger() {
+        NumberSequence numberSequence = new PrimeSequence("BigInteger",BIT_SET_LIMIT)
+        numberSequence.generateUpToLimit(this.LIMIT)
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,false) == this.VALUE_BEFORE_LIMIT
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,true) == this.VALUE_AFTER_LIMIT
     }
 
     /* Testing the print method */
-    void testPrimeSequence_printSequence_withInteger() {
-        NumberSequence Sequence = new PrimeSequence("Integer")
-        Sequence.getLast().print()
-        assert true
+    void testPrintSequence_withInteger() {
+        NumberSequence numberSequence = new PrimeSequence("Integer",BIT_SET_LIMIT)
+        assert numberSequence.printSequence(this.INDEX,false) == "NumberType{CLASS:Integer VALUE:"+this.VALUE_AT_INDEX+"} INDEX:"+this.INDEX+" NthElement:"+this.VALUE_AT_INDEX+"\n"
     }
-    void testPrimeSequence_printSequence_withLong() {
-        NumberSequence Sequence = new PrimeSequence("Long")
-        Sequence.getLast().print()
-        assert true
+    void testPrintSequence_withLong() {
+        NumberSequence numberSequence = new PrimeSequence("Long",BIT_SET_LIMIT)
+        assert numberSequence.printSequence(this.INDEX,false) == "NumberType{CLASS:Long VALUE:"+this.VALUE_AT_INDEX+"} INDEX:"+this.INDEX+" NthElement:"+this.VALUE_AT_INDEX+"\n"
     }
-    void testPrimeSequence_printSequence_withBigInteger() {
-        NumberSequence Sequence = new PrimeSequence("BigInteger")
-        Sequence.getLast().print()
-        assert true
+    void testPrintSequence_withBigInteger() {
+        NumberSequence numberSequence = new PrimeSequence("BigInteger",BIT_SET_LIMIT)
+        assert numberSequence.printSequence(this.INDEX,false) == "NumberType{CLASS:BigInteger VALUE:"+this.VALUE_AT_INDEX+"} INDEX:"+this.INDEX+" NthElement:"+this.VALUE_AT_INDEX+"\n"
     }
 
 }

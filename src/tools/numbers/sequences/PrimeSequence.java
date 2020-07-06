@@ -1,141 +1,181 @@
 package tools.numbers.sequences;
+/*
+    Project Euler - PrimeSequence - Created by Rob Sutton on 03/07/2020
+*/
 
 import org.codehaus.groovy.runtime.typehandling.BigIntegerMath;
+import tools.LongBitSet;
+import tools.numbers.types.NumberType;
 import tools.numbers.types.PrimeNumberType;
 import java.math.BigInteger;
-import java.util.BitSet;
 
-/**
- * PrimeSequence Object used for generating sequential Primes.
- */
 public class PrimeSequence extends NumberSequence {
 
-    private BitSet PrimeBits;
-    private final int BitSetLIMIT = 1000000; // TODO - Set this via constructor to avoid bullshit
+    // TODO - Auto assign bitSetLimit based on number input
+    protected LongBitSet primeBitSet;
 
-    /* Public Constructor */
-    public PrimeSequence(String NUMBER_CLASS) {
-        super(NUMBER_CLASS);
+    /* Constructor */
+    public PrimeSequence(String numberClass, String bitSetLimit) {
+        super(numberClass, bitSetLimit);
     }
 
-    /* Private Constructor - Used to return Initial Values */
-    private PrimeSequence(String NUMBER_CLASS, @SuppressWarnings("SameParameterValue") Boolean GET_INITIAL_VALUES) {
-        super(NUMBER_CLASS, GET_INITIAL_VALUES);
+    /* Constructor - Used to return Initial Values */
+    protected PrimeSequence(String numberClass, String bitSetLimit, Boolean getInitialValues) {
+        super(numberClass, bitSetLimit, getInitialValues);
     }
 
-    /* Define Initial Values Here */
-    protected PrimeSequence setInitialValues_Integer() {
-        PrimeSequence Initial_Values = new PrimeSequence("Integer", false);
-        Initial_Values.add(new PrimeNumberType(2));
-        this.PrimeBits = new BitSet(this.BitSetLIMIT);
+    /* Define the initial values using LongBitSet */
+    protected PrimeSequence setInitialValuesInteger(String bitSetLimit) {
+        PrimeSequence initialValues = new PrimeSequence("Integer", bitSetLimit,false);
+        initialValues.add(new PrimeNumberType(2));
+        long longBitSetLimit = Long.parseLong(bitSetLimit);
+        this.primeBitSet = new LongBitSet(longBitSetLimit);
         this.genPrimes();
-        for(int i = 3; i < this.BitSetLIMIT; i +=2){
-            if (PrimeBits.get(i)) {
-                Initial_Values.add(new PrimeNumberType(i));
+        for(long l = 3L; l < longBitSetLimit; l += 2L){
+            if (primeBitSet.get(l)) {
+                initialValues.add(new PrimeNumberType(Integer.parseInt(String.valueOf(l))));
             }
         }
-        return Initial_Values;
+        return initialValues;
     }
-    protected PrimeSequence setInitialValues_Long() {
-        PrimeSequence Initial_Values = new PrimeSequence("Long", false);
-        Initial_Values.add(new PrimeNumberType(2L));
-        this.PrimeBits = new BitSet(this.BitSetLIMIT);
+    protected PrimeSequence setInitialValuesLong(String bitSetLimit) {
+        PrimeSequence initialValues = new PrimeSequence("Long", bitSetLimit, false);
+        initialValues.add(new PrimeNumberType(2L));
+        long longBitSetLimit = Long.parseLong(bitSetLimit);
+        this.primeBitSet = new LongBitSet(longBitSetLimit);
         this.genPrimes();
-        for(int i = 3; i < this.BitSetLIMIT; i +=2){
-            if (PrimeBits.get(i)) {
-                Initial_Values.add(new PrimeNumberType(Long.valueOf(i)));
+        for(long l = 3L; l < longBitSetLimit; l += 2L){
+            if (primeBitSet.get(l)) {
+                initialValues.add(new PrimeNumberType(l));
             }
         }
-        return Initial_Values;
+        return initialValues;
     }
-    protected PrimeSequence setInitialValues_BigInteger() {
-        PrimeSequence Initial_Values = new PrimeSequence("BigInteger", false);
-        Initial_Values.add(new PrimeNumberType(BigInteger.TWO));
-        this.PrimeBits = new BitSet(this.BitSetLIMIT);
+    protected PrimeSequence setInitialValuesBigInteger(String bitSetLimit) {
+        PrimeSequence initialValues = new PrimeSequence("BigInteger", bitSetLimit, false);
+        initialValues.add(new PrimeNumberType(BigInteger.TWO));
+        long longBitSetLimit = Long.parseLong(bitSetLimit);
+        this.primeBitSet = new LongBitSet(longBitSetLimit);
         this.genPrimes();
-        for(int i = 3; i < this.BitSetLIMIT; i +=2){
-            if (PrimeBits.get(i)) {
-                Initial_Values.add(new PrimeNumberType(BigInteger.valueOf(i)));
+        for(long l = 3L; l < longBitSetLimit; l += 2L){
+            if (primeBitSet.get(l)) {
+                initialValues.add(new PrimeNumberType(new BigInteger(String.valueOf(l))));
             }
         }
-        return Initial_Values;
+        return initialValues;
     }
 
-    /* BitSet used to sieve primes */
+    /* BitSet used to sieve primes (0 to N-1) */
     private void genPrimes(){
-        // default at true = prime
-        for (int p = 0; p < this.BitSetLIMIT; p++) this.PrimeBits.flip(p);
-        this.PrimeBits.flip(0);
-        this.PrimeBits.flip(1);
-        for (int i = 2; i < this.BitSetLIMIT; i++) {
-            if (this.PrimeBits.get(i)) {
-                for (int j = 2 * i; j < this.BitSetLIMIT; j += i) {
-                    this.PrimeBits.set(j, false); // set all multiples of primes as not prime
+        long longBitSetLimit = Long.parseLong(this.LIMIT);
+        this.primeBitSet.set(0,false); // 0 is not a prime
+        this.primeBitSet.set(1,false); // 1 is not a prime
+        for (long p = 2; p < longBitSetLimit; p++) this.primeBitSet.set(p,true); // set [2,LIMIT) prime
+        for (long l = 2; l < longBitSetLimit; l++) {
+            if (this.primeBitSet.get(l)) {
+                for (long j = 2 * l; j < longBitSetLimit; j += l) {
+                    this.primeBitSet.set(j, false); // all multiples of primes as not prime
                 }
             }
         }
     }
 
-
-    /* TODO - Long and Integer versions */
-    public Boolean isValid(BigInteger B) {
-        // Return false if B < 2
-        if (BigIntegerMath.compareTo(B,BigInteger.TWO) < 0) return false;
-        // Return using BitSet value if B < BitSetLIMIT
-        if (BigIntegerMath.compareTo(B, new BigInteger(Integer.toString(this.BitSetLIMIT))) < 0){
-            return this.PrimeBits.get(Integer.parseInt(B.toString()));
+    /* Checks is a number is prime - used to generateNext */
+    protected Boolean isValid(Integer integerValue) {
+        long longLimit = Long.parseLong(this.LIMIT);
+        long longIntegerValue = Long.parseLong(String.valueOf(integerValue));
+        // Return false if integerValue < 2
+        if (longIntegerValue < 2) return false;
+        // Return using LongBitSet value if possible
+        if (longIntegerValue < longLimit && longLimit < Integer.MAX_VALUE){
+            return this.primeBitSet.get(longIntegerValue);
         }
-        // If B is bigger than the square of the largest previously found prime, we cannot guarantee a result
-        if (BigIntegerMath.compareTo( B,  BigIntegerMath.multiply(new BigInteger(Integer.toString(this.BitSetLIMIT)), new BigInteger(Integer.toString(this.BitSetLIMIT)))) > 0){
-            System.out.println("WARNING : input ("+B.toString()+") is too large. Increase BitSet size or risk IndexOutOfBoundsException");
-        }
-        // Otherwise
-        if (BigIntegerMath.compareTo(BigIntegerMath.mod(B,BigInteger.valueOf(6)), BigInteger.ONE) != 0 && BigIntegerMath.compareTo(BigIntegerMath.mod(B , BigInteger.valueOf(6)), BigInteger.valueOf(5)) != 0) {
+        // Magic
+        long longIntegerModuloSix = longIntegerValue % 6;
+        if (longIntegerModuloSix != 1 && longIntegerModuloSix != 5) {
             return false;
         }
-        for (int i = 0; BigIntegerMath.compareTo(BigIntegerMath.multiply( new BigInteger(this.get(i).toString()), new BigInteger(this.get(i).toString())), B) <= 0; i++) {
-            if (BigIntegerMath.compareTo(BigIntegerMath.mod(B, new BigInteger(this.get(i).toString())), BigInteger.ZERO) == 0) {
+        for (NumberType P : this){
+            long l = Long.parseLong(P.valueToString());
+            if (l*l > longIntegerValue) break;
+            if (longIntegerValue % l == 0) return false;
+        }
+        return true;
+    }
+    protected Boolean isValid(Long longValue) {
+        long longLimit = Long.parseLong(this.LIMIT);
+        // Return false if longValue < 2
+        if (longValue < 2) return false;
+        // Return using LongBitSet longValue < LIMIT
+        if (longValue < longLimit && longLimit < Integer.MAX_VALUE){
+            return this.primeBitSet.get(longValue);
+        }
+        // Magic
+        long longIntegerModuloSix = longValue % 6;
+        if (longIntegerModuloSix != 1 && longIntegerModuloSix != 5) {
+            return false;
+        }
+        for (NumberType P : this){
+            long l = Long.parseLong(P.valueToString());
+            if (l*l > longValue) break;
+            if (longValue % l == 0) return false;
+        }
+        return true;
+    }
+    protected Boolean isValid(BigInteger bigIntegerValue) {
+        // Return false if bigIntegerValue < 2
+        if (BigIntegerMath.compareTo(bigIntegerValue,BigInteger.TWO) < 0) return false;
+        // Return using LongBitSet if bigIntegerValue < LIMIT
+        if (BigIntegerMath.compareTo(bigIntegerValue, new BigInteger(this.LIMIT)) < 0){
+            return this.primeBitSet.get(Integer.parseInt(bigIntegerValue.toString()));
+        }
+        // Magic
+        if (BigIntegerMath.compareTo(BigIntegerMath.mod(bigIntegerValue,BigInteger.valueOf(6)), BigInteger.ONE) != 0 && BigIntegerMath.compareTo(BigIntegerMath.mod(bigIntegerValue , BigInteger.valueOf(6)), BigInteger.valueOf(5)) != 0) {
+            return false;
+        }
+        for (NumberType P : this){
+            BigInteger bigInteger = new BigInteger(P.valueToString());
+            if (BigIntegerMath.compareTo(BigIntegerMath.multiply( bigInteger, bigInteger), bigIntegerValue) > 0) break;
+            if (BigIntegerMath.compareTo(BigIntegerMath.mod(bigIntegerValue, bigInteger), BigInteger.ZERO) == 0) {
                 return false;
             }
         }
         return true;
     }
 
-    /* Generate Next Prime - TODO
-     *
-     * The isValid method checks bigger primes but doesn't add them this List
-     * The primes would be out of order unless they are isValid checks in increasing magnitude.
-     * This method should be called to find them in the right order so we can add them to the list as we go
-     *
-     *
-     * I stole this from Primes before deleting it.
-     *     public int nextPrime(int p){
-     *         do p += 2; while (isPrime(p));
-     *         return p;
-     *     }
-     *     // Check if n is prime
-     *     public boolean isPrime(int n) {
-     *         for (int i = 0; primeArray[i] * primeArray[i] <= n; i++) {
-     *             if (n % 6 != 1 && n % 6 != 5) { // this looks like it can be taken outside the for loop
-     *                 return false;
-     *             }
-     *             if (n % primeArray[i] == 0) {
-     *                 return false;
-     *             }
-     *         }
-     *         return true;
-     *     }
-     *
-     */
-
-    protected PrimeNumberType generateNext_Integer() {
-        return null;
+    /* If BitSet is smaller than required we call this to generate sequential primes */
+    protected PrimeNumberType generateNextInteger() {
+        int increment = 2;
+        while (true){
+            int testNumber = Integer.parseInt(this.getLast().valueToString());
+            testNumber += increment;
+            if (this.isValid(testNumber)){
+                return new PrimeNumberType(testNumber);
+            }
+            increment += 2;
+        }
     }
-    protected PrimeNumberType generateNext_Long() {
-        return null;
+    protected PrimeNumberType generateNextLong() {
+        long increment = 2L;
+        while (true){
+            long testNumber = Long.parseLong(this.getLast().valueToString());
+            testNumber += increment;
+            if (this.isValid(testNumber)){
+                return new PrimeNumberType(testNumber);
+            }
+            increment += 2L;
+        }
     }
-    protected PrimeNumberType generateNext_BigInteger() {
-        return null;
+    protected PrimeNumberType generateNextBigInteger() {
+        BigInteger increment = BigInteger.TWO;
+        while (true){
+            BigInteger testNumber = new BigInteger(this.getLast().valueToString());
+            testNumber = testNumber.add(increment);
+            if (this.isValid(testNumber)){
+                return new PrimeNumberType(testNumber);
+            }
+            increment = increment.add(BigInteger.TWO);
+        }
     }
 
 }

@@ -1,14 +1,15 @@
 package problems.solved.published;
+/*
+    Project Euler - Problem_012 - Solved by Rob Sutton on 03/07/2020
+	    Answer : 76576500
+	    Time Taken : 0.173355204 seconds
+*/
 
 import org.codehaus.groovy.runtime.typehandling.IntegerMath;
 import problems.ProblemSolver;
 import tools.numbers.sequences.TriangleSequence;
 import static tools.numbers.divisors.Divisors.countDivisors;
 
-/**
- Answer : 76576500
- Time Taken : 0.173355204 seconds
- */
 public class Problem_012 extends ProblemSolver {
 
     public Problem_012() {
@@ -17,11 +18,11 @@ public class Problem_012 extends ProblemSolver {
 
     @Override
     public String solve() {
-        TriangleSequence TriangleSequence = new TriangleSequence("Integer");
-        while (IntegerMath.compareTo( countDivisors((Integer)TriangleSequence.getLast().VALUE)  , 500) < 0){
-            TriangleSequence.generateNext();
+        TriangleSequence triangleSequence = new TriangleSequence("Integer");
+        while (IntegerMath.compareTo( countDivisors((Integer)triangleSequence.getLast().VALUE)  , 500) < 0){
+            triangleSequence.generateNext();
         }
-        return TriangleSequence.getLast().VALUE.toString();
+        return triangleSequence.getLast().valueToString();
     }
 
 }

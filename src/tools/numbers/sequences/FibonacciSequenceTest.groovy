@@ -1,68 +1,65 @@
 package tools.numbers.sequences
+/*
+    Project Euler - FibonacciSequenceTest - Created by Rob Sutton on 03/07/2020
+*/
 
 class FibonacciSequenceTest extends GroovyTestCase {
 
-    private Integer INDEX
-    private String VALUE, LIMIT
+    private final Integer INDEX = 45
+    private final String VALUE_AT_INDEX = "1134903170"
+    private final String LIMIT = "1234567890"
+    private final String VALUE_BEFORE_LIMIT = "1134903170"
+    private final String VALUE_AFTER_LIMIT = "1836311903"
 
-    @Override
-    protected void setUp() {
-        super.setUp()
-        this.LIMIT = "1134903999"
-        this.VALUE = "1134903170"
-        this.INDEX = 45
-    }
-
-    /* Testing the getNthValue method */
+    /* Testing generateUpToNthIndex and getNthElementAsString */
     void testFibonacciSequence_getNthValue_withInteger() {
-        NumberSequence Sequence = new FibonacciSequence("Integer")
-        Sequence.generateUpToNthIndex(this.INDEX)
-        assert Sequence.getLast().toString() == this.VALUE
+        NumberSequence numberSequence = new FibonacciSequence("Integer")
+        numberSequence.generateUpToNthIndex(this.INDEX)
+        assert numberSequence.getNthElementAsString(this.INDEX) == this.VALUE_AT_INDEX
     }
     void testFibonacciSequence_getNthValue_withLong() {
-        NumberSequence Sequence = new FibonacciSequence("Long")
-        Sequence.generateUpToNthIndex(this.INDEX)
-        assert Sequence.getLast().toString() == this.VALUE    }
+        NumberSequence numberSequence = new FibonacciSequence("Long")
+        numberSequence.generateUpToNthIndex(this.INDEX)
+        assert numberSequence.getNthElementAsString(this.INDEX) == this.VALUE_AT_INDEX
+    }
     void testFibonacciSequence_getNthValue_withBigInteger() {
-        NumberSequence Sequence = new FibonacciSequence("BigInteger")
-        Sequence.generateUpToNthIndex(this.INDEX)
-        assert Sequence.getLast().toString() == this.VALUE
+        NumberSequence numberSequence = new FibonacciSequence("BigInteger")
+        numberSequence.generateUpToNthIndex(this.INDEX)
+        assert numberSequence.getNthElementAsString(this.INDEX) == this.VALUE_AT_INDEX
     }
 
-    /* Testing the iterateUpToLimit method */
+    /* Testing generateUpToLimit and getElementAtLimitAsString */
     void testFibonacciSequence_iterateUpToLimit_withInteger() {
-        NumberSequence Sequence = new FibonacciSequence("Integer")
-        Sequence.generateUpToLimit(this.LIMIT)
-        assert Sequence.get(Sequence.size()-2).toString() == this.VALUE
+        NumberSequence numberSequence = new FibonacciSequence("Integer")
+        numberSequence.generateUpToLimit(this.LIMIT)
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,false) == this.VALUE_BEFORE_LIMIT
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,true) == this.VALUE_AFTER_LIMIT
     }
     void testFibonacciSequence_iterateUpToLimit_withLong() {
-        NumberSequence Sequence = new FibonacciSequence("Long")
-        Sequence.generateUpToLimit(this.LIMIT)
-        assert Sequence.get(Sequence.size()-2).toString() == this.VALUE     }
+        NumberSequence numberSequence = new FibonacciSequence("Long")
+        numberSequence.generateUpToLimit(this.LIMIT)
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,false) == this.VALUE_BEFORE_LIMIT
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,true) == this.VALUE_AFTER_LIMIT
+    }
     void testFibonacciSequence_iterateUpToLimit_withBigInteger() {
-        NumberSequence Sequence = new FibonacciSequence("BigInteger")
-        Sequence.generateUpToLimit(this.LIMIT)
-        assert Sequence.get(Sequence.size()-2).toString() == this.VALUE
+        NumberSequence numberSequence = new FibonacciSequence("BigInteger")
+        numberSequence.generateUpToLimit(this.LIMIT)
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,false) == this.VALUE_BEFORE_LIMIT
+        assert numberSequence.getElementAtLimitAsString(this.LIMIT,true) == this.VALUE_AFTER_LIMIT
     }
 
-    /* Testing the printSequence method */
+    /* Testing printSequence */
     void testFibonacciSequence_printSequence_withInteger() {
-        NumberSequence Sequence = new FibonacciSequence("Integer")
-        Sequence.generateUpToLimit("100")
-        Sequence.printSequence()
-        assert true
+        NumberSequence numberSequence = new FibonacciSequence("Integer")
+        assert numberSequence.printSequence(false) == "NumberType{CLASS:Integer VALUE:1} INDEX:1 NthElement:1\n"+"NumberType{CLASS:Integer VALUE:1} INDEX:2 NthElement:1\n"
     }
     void testFibonacciSequence_printSequence_withLong() {
-        NumberSequence Sequence = new FibonacciSequence("Long")
-        Sequence.generateUpToLimit("100")
-        Sequence.printSequence()
-        assert true
+        NumberSequence numberSequence = new FibonacciSequence("Long")
+        assert numberSequence.printSequence(false) == "NumberType{CLASS:Long VALUE:1} INDEX:1 NthElement:1\n"+"NumberType{CLASS:Long VALUE:1} INDEX:2 NthElement:1\n"
     }
     void testFibonacciSequence_printSequence_withBigInteger() {
-        NumberSequence Sequence = new FibonacciSequence("BigInteger")
-        Sequence.generateUpToLimit("100")
-        Sequence.printSequence()
-        assert true
+        NumberSequence numberSequence = new FibonacciSequence("BigInteger")
+        assert numberSequence.printSequence(false) == "NumberType{CLASS:BigInteger VALUE:1} INDEX:1 NthElement:1\n"+"NumberType{CLASS:BigInteger VALUE:1} INDEX:2 NthElement:1\n"
     }
 
 }

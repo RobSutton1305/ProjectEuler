@@ -1,11 +1,12 @@
 package problems.solved.published;
+/*
+    Project Euler - Problem_009 - Solved by Rob Sutton on 03/07/2020
+	    Answer : 31875000
+	    Time Taken : 0.151799942 seconds
+*/
 
 import problems.ProblemSolver;
 
-/**
- Answer : 31875000
- Time Taken : 0.151799942 seconds
- */
 public class Problem_009 extends ProblemSolver {
 
     public Problem_009() {

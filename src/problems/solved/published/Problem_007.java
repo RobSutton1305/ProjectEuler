@@ -1,29 +1,22 @@
 package problems.solved.published;
+/*
+    Project Euler - Problem_007 - Solved by Rob Sutton on 03/07/2020
+	    Answer : 104743
+	    Time Taken : 2.152E-6 seconds
+*/
 
 import problems.ProblemSolver;
 import tools.numbers.sequences.PrimeSequence;
 
-/**
- Answer : 104743
- Time Taken : 2.152E-6 seconds
- */
 public class Problem_007 extends ProblemSolver {
-
-    private PrimeSequence PrimeSequence;
 
     public Problem_007() {
         super("104743");
     }
 
     @Override
-    public void init() {
-        this.PrimeSequence = new PrimeSequence("Integer");
-    }
-
-    @Override
     public String solve() {
-        this.PrimeSequence.generateUpToNthIndex(10001);
-        return this.PrimeSequence.get(10001 - 1).toString();
+        return (new PrimeSequence("Integer", "150000")).get(10000).valueToString();
     }
 
 
